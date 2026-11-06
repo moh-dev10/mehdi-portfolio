@@ -1,4 +1,13 @@
-import RadarChart from "./RadarCahrt";
+import RadarChart from "./RadarChart";
+
+const dotColorMap = {
+  sky: "bg-sky text-sky shadow-[0_0_8px_var(--sky)]",
+  violet: "bg-violet text-violet shadow-[0_0_8px_var(--violet)]",
+  mint: "bg-mint text-mint shadow-[0_0_8px_var(--mint)]",
+  amber: "bg-amber text-amber shadow-[0_0_8px_var(--amber)]",
+  pink: "bg-pink text-pink shadow-[0_0_8px_var(--pink)]",
+  muted: "bg-muted text-muted shadow-[0_0_8px_var(--muted)]",
+};
 
 const skills = [
   {
@@ -92,7 +101,7 @@ export default function Skills() {
                   <div className="mb-2.5 flex items-center justify-between">
                     <span className="flex items-center gap-2.5 text-sm font-medium text-foreground">
                       <span
-                        className={`size-2 rounded-full bg-${skill.color} shadow-[0_0_8px_currentColor]`}
+                        className={`size-2 rounded-full ${dotColorMap[skill.color] || "bg-sky"}`}
                       />
 
                       {skill.name}

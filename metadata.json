@@ -1,0 +1,8 @@
+{
+  "name": "Mehdi — Data Science Portfolio",
+  "description": "Portfolio of Mehdi, 2nd-year Data Science student at USTHB, Algiers. Showcasing end-to-end analytical pipelines, machine learning models, and real-world data projects.",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

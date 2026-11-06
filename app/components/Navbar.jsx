@@ -12,8 +12,7 @@ const navLinks = [
 export default function Navbar() {
   return (
     <header className="fixed top-0 right-0 left-0 z-50 border-b border-border bg-background/80 backdrop-blur-[10px]">
-      <div className="wrap flex h-[68px] w-full  items-center justify-between">
-
+      <div className="wrap flex h-[68px] w-full items-center justify-between">
         {/* Brand */}
         <a href="#hero" className="flex items-center gap-[11px]">
           <span
@@ -39,25 +38,17 @@ export default function Navbar() {
               {link.name}
             </a>
           ))}
-
         </nav>
 
-          <div className="hidden md:flex md:items-center md:gap-2  ml-2 rounded-3xl border border-sky/30 bg-white px-[14px] py-2 
-                text-[0.88rem] font-medium text-black hover:text-sky transition-colors duration-200 hover:border-sky/55 hover:bg-sky/18 cursor-pointer">
-              <a
-                href="#contact"
-                
-              >
-                Hire Me
-              </a>
-
-              <ArrowRight size={18} className="-rotate-45"/>
-
-          </div>
+        <div className="hidden md:flex md:items-center md:gap-2 ml-2 rounded-3xl border border-sky/30 bg-white px-[14px] py-2 text-[0.88rem] font-medium text-black hover:text-sky transition-colors duration-200 hover:border-sky/55 hover:bg-sky/18 cursor-pointer">
+          <a href="#contact">
+            Hire Me
+          </a>
+          <ArrowRight size={18} className="-rotate-45" />
+        </div>
 
         {/* Mobile button */}
-        <MobileNav/>
-
+        <MobileNav />
       </div>
     </header>
   );

@@ -154,5 +154,20 @@ svg {
 
 .section {
   padding-block: 110px;
-  
+}
+
+section {
+  scroll-margin-top: 80px;
+}
+
+.bg-layer {
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  pointer-events: none;
+  background:
+    radial-gradient(900px 620px at 10% -8%, rgba(56, 189, 248, 0.16), transparent 62%),
+    radial-gradient(820px 600px at 90% 4%, rgba(167, 139, 250, 0.14), transparent 62%),
+    radial-gradient(760px 560px at 50% 104%, rgba(52, 211, 153, 0.085), transparent 66%),
+    var(--background);
 }
