@@ -75,6 +75,11 @@ export default function Hero() {
                 </div>
 
                 <div className="flex justify-between py-2.5">
+                  <dt className="mono text-muted-2">Baccalauréat</dt>
+                  <dd className="font-medium text-foreground">2025</dd>
+                </div>
+
+                <div className="flex justify-between py-2.5">
                   <dt className="mono text-muted-2">Current Coursework</dt>
                   <dd className="text-right font-medium text-foreground">
                     Inference, Linear Algebra, SQL, ML

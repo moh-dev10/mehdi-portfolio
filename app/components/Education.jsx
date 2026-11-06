@@ -1,34 +1,5 @@
 import Reveal from "./Reveal";
-
-const education = [
-  {
-    period: "2024 — Present",
-    qualification: "Licence in Data Science (Year 2)",
-    institution: "USTHB — Université des Sciences et de la Technologie Houari Boumediene",
-    location: "Bab Ezzouar, Algiers",
-    description:
-      "Specialized undergraduate curriculum covering probability theory, mathematical statistics, linear algebra, algorithms and data structures, relational database systems (SQL), and introductory machine learning.",
-    coursework: ["Probability & Statistics", "Linear Algebra", "SQL & Databases", "Data Structures", "Scikit-learn"],
-  },
-  {
-    period: "2023 — 2024",
-    qualification: "Baccalauréat — Experimental Sciences",
-    institution: "Lycée",
-    location: "Algiers, Algeria",
-    description:
-      "Graduated with a strong academic emphasis on mathematics, physical sciences, and natural sciences, leading directly into the competitive Data Science track at USTHB.",
-    coursework: ["Advanced Mathematics", "Physics", "Chemistry"],
-  },
-  {
-    period: "Ongoing",
-    qualification: "Self-Directed Technical Practice",
-    institution: "Independent Study",
-    location: "Kaggle & Open-Source Projects",
-    description:
-      "Hands-on practice applying university theory to public datasets, focusing on reproducible exploratory data analysis, feature engineering, and documented Python notebooks.",
-    coursework: ["Data Cleaning", "Exploratory Pipelines", "Notebook Documentation"],
-  },
-];
+import { localEducation } from "@/lib/repositories/educationRepository";
 
 export default function Education() {
   return (
@@ -46,15 +17,15 @@ export default function Education() {
             </h2>
 
             <p className="mt-3 text-sm text-muted">
-              Formal mathematical and computational studies at USTHB, complemented by self-directed empirical learning.
+              Current undergraduate studies in Data Science at USTHB following completion of the Baccalauréat in 2025.
             </p>
           </div>
         </Reveal>
 
         {/* Chronological Record */}
         <div className="mt-12 divide-y divide-border border-t border-border">
-          {education.map((item, index) => (
-            <Reveal key={item.period} delay={index * 90} duration={550}>
+          {localEducation.map((item, index) => (
+            <Reveal key={item.period + item.qualification} delay={index * 90} duration={550}>
               <div className="grid gap-4 py-8 lg:grid-cols-[220px_1fr]">
                 <div>
                   <span className="mono text-xs text-olive font-medium">

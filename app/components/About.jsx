@@ -40,7 +40,7 @@ export default function About() {
           <Reveal delay={40}>
             <div className="space-y-5 text-sm leading-relaxed text-muted sm:text-base">
               <p>
-                I am a second-year undergraduate student enrolled in the Data Science program at <strong className="font-medium text-foreground">USTHB (Université des Sciences et de la Technologie Houari Boumediene)</strong> in Algiers. My curriculum balances foundational coursework in probability, statistical inference, algorithms, and linear algebra with weekly computer science laboratory sessions.
+                Having obtained my Baccalauréat in 2025, I am currently a second-year undergraduate student enrolled in the Data Science program at <strong className="font-medium text-foreground">USTHB (Université des Sciences et de la Technologie Houari Boumediene)</strong> in Algiers. My curriculum balances foundational coursework in probability, statistical inference, algorithms, and linear algebra with practical computing laboratories.
               </p>
 
               <p>
@@ -69,13 +69,18 @@ export default function About() {
                 </div>
 
                 <div>
-                  <span className="mono block text-muted-2">Department</span>
-                  <span className="font-medium text-foreground">Faculty of Mathematics & Computer Science</span>
+                  <span className="mono block text-muted-2">Current Program</span>
+                  <span className="font-medium text-foreground">Licence 2 Data Science (Year 2)</span>
+                </div>
+
+                <div>
+                  <span className="mono block text-muted-2">Baccalauréat</span>
+                  <span className="font-medium text-foreground">Obtained in 2025</span>
                 </div>
 
                 <div>
                   <span className="mono block text-muted-2">Languages</span>
-                  <span className="font-medium text-foreground">French (fluent), English (fluent), Arabic (native)</span>
+                  <span className="font-medium text-foreground">French, English, Arabic</span>
                 </div>
 
                 <div>
