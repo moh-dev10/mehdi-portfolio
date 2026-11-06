@@ -1,3 +1,5 @@
+import { ArrowDown, ArrowRight } from "lucide-react";
+
 export default function Hero() {
   return (
     <section id="hero" className="section border-b border-border pt-28 pb-20">
@@ -27,7 +29,7 @@ export default function Hero() {
                 className="inline-flex items-center gap-2 rounded-[4px] bg-olive px-4 py-2.5 text-[#10110F] font-semibold transition-colors hover:bg-olive-hover"
               >
                 <span>View Projects</span>
-                <span>↓</span>
+                <ArrowDown size={14} />
               </a>
 
               <a
@@ -35,7 +37,7 @@ export default function Hero() {
                 className="inline-flex items-center gap-2 rounded-[4px] border border-border bg-surface px-4 py-2.5 text-foreground transition-colors hover:border-border-strong hover:bg-surface-2"
               >
                 <span>Case Study</span>
-                <span>↓</span>
+                <ArrowDown size={14} />
               </a>
 
               <a
@@ -43,7 +45,7 @@ export default function Hero() {
                 className="inline-flex items-center gap-1.5 px-3 py-2.5 text-muted transition-colors hover:text-foreground"
               >
                 <span>Get in touch</span>
-                <span>→</span>
+                <ArrowRight size={14} />
               </a>
             </div>
           </div>

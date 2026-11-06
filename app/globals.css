@@ -3,22 +3,23 @@
 :root {
   /* ============ BLACK & OLIVE PALETTE ============ */
   --background: #10110F;
-  --background-soft: #141613;
+  --background-soft: #161814;
 
-  --surface: #191B16;
-  --surface-2: #242820;
+  --surface: #20231D;
+  --surface-2: #41483A;
 
-  --border: rgba(242, 241, 234, 0.08);
-  --border-strong: rgba(242, 241, 234, 0.14);
+  --border: rgba(242, 241, 234, 0.10);
+  --border-muted: rgba(242, 241, 234, 0.06);
+  --border-strong: rgba(242, 241, 234, 0.16);
 
   --foreground: #F2F1EA;
   --muted: #A5A69D;
-  --muted-2: #6E7166;
+  --muted-2: #7D8075;
 
   /* Olive Accent */
   --olive: #92977F;
-  --olive-soft: rgba(146, 151, 127, 0.10);
-  --olive-hover: #A8AD95;
+  --olive-soft: rgba(146, 151, 127, 0.12);
+  --olive-hover: #A5AA92;
 
   /* Swiss / Editorial restraint */
   --radius: 4px;
@@ -35,6 +36,7 @@
   --color-surface-2: var(--surface-2);
 
   --color-border: var(--border);
+  --color-border-muted: var(--border-muted);
   --color-border-strong: var(--border-strong);
 
   --color-foreground: var(--foreground);

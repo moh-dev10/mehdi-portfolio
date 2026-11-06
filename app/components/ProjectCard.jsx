@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
 
 export default function ProjectCard({ project }) {
   return (
@@ -46,9 +47,10 @@ export default function ProjectCard({ project }) {
             href={project.githubUrl}
             target="_blank"
             rel="noreferrer"
-            className="font-medium text-foreground transition-colors hover:text-olive"
+            className="inline-flex items-center gap-1 font-medium text-foreground transition-colors hover:text-olive"
           >
-            GitHub ↗
+            <span>GitHub</span>
+            <ArrowUpRight size={13} />
           </a>
         )}
 
@@ -57,9 +59,10 @@ export default function ProjectCard({ project }) {
             href={project.demoUrl}
             target="_blank"
             rel="noreferrer"
-            className="font-medium text-foreground transition-colors hover:text-olive"
+            className="inline-flex items-center gap-1 font-medium text-foreground transition-colors hover:text-olive"
           >
-            Live demo ↗
+            <span>Live demo</span>
+            <ArrowUpRight size={13} />
           </a>
         )}
       </div>

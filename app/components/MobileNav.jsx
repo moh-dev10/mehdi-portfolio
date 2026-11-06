@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const mobileLinks = [
   { name: "About", href: "#about" },
@@ -14,14 +14,29 @@ const mobileLinks = [
 
 export default function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef(null);
+  const buttonRef = useRef(null);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape") setIsOpen(false);
     };
 
+    const handleClickOutside = (e) => {
+      if (
+        isOpen &&
+        menuRef.current &&
+        !menuRef.current.contains(e.target) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(e.target)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
     if (isOpen) {
       window.addEventListener("keydown", handleKeyDown);
+      document.addEventListener("mousedown", handleClickOutside);
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
@@ -29,17 +44,21 @@ export default function MobileNav() {
 
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("mousedown", handleClickOutside);
       document.body.style.overflow = "";
     };
   }, [isOpen]);
 
+  const closeMenu = () => setIsOpen(false);
+
   return (
     <>
       <button
+        ref={buttonRef}
         type="button"
-        onClick={() => setIsOpen(!isOpen)}
-        className="flex size-[40px] flex-col items-center justify-center gap-[5px] rounded-[4px] border border-border bg-surface lg:hidden transition-colors hover:border-olive"
-        aria-label="Toggle navigation"
+        onClick={() => setIsOpen((prev) => !prev)}
+        className="flex size-[40px] flex-col items-center justify-center gap-[5px] rounded-[4px] border border-border bg-surface lg:hidden transition-colors hover:border-olive cursor-pointer"
+        aria-label="Toggle navigation menu"
         aria-expanded={isOpen}
       >
         <span
@@ -62,15 +81,16 @@ export default function MobileNav() {
       {/* Backdrop overlay */}
       {isOpen && (
         <div
-          onClick={() => setIsOpen(false)}
-          className="fixed inset-0 top-[68px] z-30 bg-black/75 backdrop-blur-xs lg:hidden"
+          onClick={closeMenu}
+          className="fixed inset-0 z-30 bg-black/80 backdrop-blur-xs lg:hidden"
           aria-hidden="true"
         />
       )}
 
       {/* Mobile Menu */}
       <div
-        className={`fixed top-[74px] right-4 left-4 z-40 rounded-[4px] border border-border-strong bg-surface p-3 shadow-2xl transition-all duration-200 lg:hidden ${
+        ref={menuRef}
+        className={`fixed top-[74px] right-4 left-4 z-40 rounded-[4px] border border-border-strong bg-[#161814] p-3 shadow-2xl transition-all duration-200 lg:hidden ${
           isOpen
             ? "translate-y-0 opacity-100"
             : "pointer-events-none -translate-y-2 opacity-0"
@@ -81,8 +101,8 @@ export default function MobileNav() {
             <a
               key={link.name}
               href={link.href}
-              onClick={() => setIsOpen(false)}
-              className="block rounded-[4px] px-4 py-2.5 text-sm font-medium text-muted transition-colors hover:bg-surface-2 hover:text-foreground"
+              onClick={closeMenu}
+              className="block rounded-[4px] px-4 py-2.5 text-sm font-medium text-muted transition-colors hover:bg-surface hover:text-foreground"
             >
               {link.name}
             </a>
@@ -90,8 +110,8 @@ export default function MobileNav() {
 
           <a
             href="#contact"
-            onClick={() => setIsOpen(false)}
-            className="mt-2 block rounded-[4px] border border-olive/30 bg-surface-2 px-4 py-2.5 text-center text-sm font-semibold text-olive transition-colors hover:border-olive"
+            onClick={closeMenu}
+            className="mt-2 block rounded-[4px] border border-olive/40 bg-surface px-4 py-2.5 text-center text-sm font-semibold text-olive transition-colors hover:border-olive"
           >
             Get in touch
           </a>
