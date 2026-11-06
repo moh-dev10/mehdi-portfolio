@@ -3,23 +3,23 @@ import { projects } from "../data/projects";
 
 export default function Projects() {
   return (
-    <section id="projects" className="section">
+    <section id="projects" className="section border-b border-border">
       <div className="wrap">
-        <div className="mb-14 max-w-3xl">
-          <span className="mono text-xs font-medium uppercase tracking-[0.14em] text-olive">
-            03 — Projects
-          </span>
+        <div className="max-w-2xl">
+          <div className="mono text-xs uppercase tracking-[0.18em] text-olive">
+            03 / Projects
+          </div>
 
-          <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-foreground md:text-4xl">
-            Selected practical data projects.
+          <h2 className="mt-4 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
+            Selected exploratory data projects.
           </h2>
 
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted">
-            A collection of exploratory analysis and foundational machine learning work built around public datasets and practical analytical questions.
+          <p className="mt-3 text-sm text-muted">
+            Four foundational projects documenting machine learning experimentation, exploratory data analysis, and predictive modeling on open datasets.
           </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="mt-12 grid gap-6 md:grid-cols-2">
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}

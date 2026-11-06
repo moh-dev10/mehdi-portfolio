@@ -1,104 +1,94 @@
-const timelineItems = [
+const education = [
   {
-    date: "2024 — Present",
-    title: "Licence in Data Science — 2nd Year",
-    institution:
-      "USTHB — Université des Sciences et de la Technologie Houari Boumediene · Algiers, Algeria",
+    period: "2024 — Present",
+    qualification: "Licence in Data Science (Year 2)",
+    institution: "USTHB — Université des Sciences et de la Technologie Houari Boumediene",
+    location: "Bab Ezzouar, Algiers",
     description:
-      "Core academic curriculum in probability theory, statistical inference, linear algebra, algorithms, relational database systems, and foundational machine learning.",
-    chips: [
-      "Probability & Statistics",
-      "Linear Algebra",
-      "Databases (SQL)",
-      "Algorithms",
-      "Machine Learning",
-    ],
+      "Specialized undergraduate curriculum covering probability theory, mathematical statistics, linear algebra, algorithms and data structures, relational database systems (SQL), and introductory machine learning.",
+    coursework: ["Probability & Statistics", "Linear Algebra", "SQL & Databases", "Data Structures", "Scikit-learn"],
   },
   {
-    date: "2023 — 2024",
-    title: "Baccalauréat — Experimental Sciences",
-    institution: "Algiers, Algeria",
+    period: "2023 — 2024",
+    qualification: "Baccalauréat — Experimental Sciences",
+    institution: "Lycée",
+    location: "Algiers, Algeria",
     description:
-      "Graduated with a strong academic foundation in mathematics and physical sciences, leading directly to the specialized Data Science track at USTHB.",
-    chips: ["Mathematics", "Physics", "Natural Sciences"],
+      "Graduated with a strong academic emphasis on mathematics, physical sciences, and natural sciences, leading directly into the competitive Data Science track at USTHB.",
+    coursework: ["Advanced Mathematics", "Physics", "Chemistry"],
   },
   {
-    date: "Ongoing",
-    title: "Independent Applied Practice",
-    institution: "Self-Directed · Kaggle · Open-Source Datasets",
+    period: "Ongoing",
+    qualification: "Self-Directed Technical Practice",
+    institution: "Independent Study",
+    location: "Kaggle & Open-Source Projects",
     description:
-      "Complementing university courses with hands-on exploratory analysis, practical data cleaning challenges, and reproducible notebook documentation.",
-    chips: [
-      "Data wrangling",
-      "Exploratory pipelines",
-      "Notebook workflows",
-    ],
+      "Hands-on practice applying university theory to public datasets, focusing on reproducible exploratory data analysis, feature engineering, and documented Python notebooks.",
+    coursework: ["Data Cleaning", "Exploratory Pipelines", "Notebook Documentation"],
   },
 ];
 
 export default function Education() {
   return (
-    <section id="education" className="section">
+    <section id="education" className="section border-b border-border">
       <div className="wrap">
         {/* Section header */}
-        <div className="mb-14 max-w-3xl">
-          <span className="mono text-xs font-medium uppercase tracking-[0.14em] text-olive">
-            05 — Education
-          </span>
+        <div className="max-w-2xl">
+          <div className="mono text-xs uppercase tracking-[0.18em] text-olive">
+            05 / Education
+          </div>
 
-          <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-foreground md:text-4xl">
-            Academic background & coursework.
+          <h2 className="mt-4 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
+            Academic timeline & coursework.
           </h2>
 
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted">
-            Formal training in mathematics, statistics, and computing at USTHB, complemented by self-directed exploratory practice.
+          <p className="mt-3 text-sm text-muted">
+            Formal mathematical and computational studies at USTHB, complemented by self-directed empirical learning.
           </p>
         </div>
 
-        {/* Timeline */}
-        <div className="relative pl-8 sm:pl-10">
-          {/* Vertical connecting line */}
-          <div className="absolute top-2 bottom-2 left-2.5 w-px bg-border-strong sm:left-3" />
+        {/* Chronological Record */}
+        <div className="mt-12 divide-y divide-border border-t border-border">
+          {education.map((item) => (
+            <div
+              key={item.period}
+              className="grid gap-4 py-8 lg:grid-cols-[220px_1fr]"
+            >
+              <div>
+                <span className="mono text-xs text-olive font-medium">
+                  {item.period}
+                </span>
+                <span className="block text-xs text-muted-2 mt-0.5">
+                  {item.location}
+                </span>
+              </div>
 
-          <div className="space-y-8">
-            {timelineItems.map((item, index) => (
-              <div key={index} className="relative">
-                {/* Node dot */}
-                <span className="absolute -left-[30px] top-2 size-3 rounded-full border border-olive bg-surface sm:-left-[35px]" />
+              <div>
+                <h3 className="text-base font-semibold text-foreground">
+                  {item.qualification}
+                </h3>
 
-                {/* Content Card */}
-                <div className="rounded-[14px] border border-border bg-surface p-6 shadow-[var(--shadow)] transition-colors hover:border-border-strong sm:p-7">
-                  <span className="mono block text-xs font-semibold uppercase tracking-wider text-olive">
-                    {item.date}
-                  </span>
+                <p className="mt-0.5 text-xs text-muted-2">
+                  {item.institution}
+                </p>
 
-                  <h3 className="mt-2 text-xl font-bold text-foreground">
-                    {item.title}
-                  </h3>
+                <p className="mt-3 text-xs leading-relaxed text-muted sm:text-sm">
+                  {item.description}
+                </p>
 
-                  <p className="mt-1 text-xs text-muted">
-                    {item.institution}
-                  </p>
-
-                  <p className="mt-3.5 text-sm leading-relaxed text-muted">
-                    {item.description}
-                  </p>
-
-                  {/* Chips */}
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {item.chips.map((chip) => (
-                      <span
-                        key={chip}
-                        className="mono rounded-full border border-border bg-surface-2 px-3 py-1 text-xs text-muted"
-                      >
-                        {chip}
-                      </span>
-                    ))}
-                  </div>
+                <div className="mt-4 flex flex-wrap gap-1.5">
+                  {item.coursework.map((course) => (
+                    <span
+                      key={course}
+                      className="mono rounded-[2px] border border-border bg-surface px-2 py-0.5 text-[11px] text-muted-2"
+                    >
+                      {course}
+                    </span>
+                  ))}
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

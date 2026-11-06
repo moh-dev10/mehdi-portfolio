@@ -52,19 +52,19 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="section">
+    <section id="contact" className="section border-b border-border">
       <div className="wrap">
         {/* Section header */}
-        <div className="mb-14 max-w-3xl">
-          <span className="mono text-xs font-medium uppercase tracking-[0.14em] text-olive">
-            07 — Contact
-          </span>
+        <div className="mb-12 max-w-2xl">
+          <div className="mono text-xs uppercase tracking-[0.18em] text-olive">
+            07 / Contact
+          </div>
 
-          <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-foreground md:text-4xl">
+          <h2 className="mt-4 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
             Get in touch.
           </h2>
 
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted">
+          <p className="mt-3 text-sm text-muted">
             Open to student internships, academic collaborations, and project discussions.
           </p>
         </div>
@@ -74,7 +74,7 @@ export default function Contact() {
           {/* Form Card */}
           <form
             onSubmit={handleSubmit}
-            className="rounded-[14px] border border-border bg-surface p-6 shadow-[var(--shadow)] sm:p-8"
+            className="rounded-[4px] border border-border bg-surface p-6 sm:p-8"
           >
             <div className="grid gap-5 sm:grid-cols-2">
               <div>
@@ -91,7 +91,7 @@ export default function Contact() {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="Full name"
-                  className="mt-2 w-full rounded-[8px] border border-border bg-background-soft px-3.5 py-2.5 text-sm text-foreground transition-colors placeholder:text-muted-2 focus:border-olive focus:outline-hidden"
+                  className="mt-2 w-full rounded-[4px] border border-border bg-background-soft px-3.5 py-2.5 text-sm text-foreground transition-colors placeholder:text-muted-2 focus:border-olive focus:outline-hidden"
                   required
                 />
               </div>
@@ -110,7 +110,7 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="you@example.com"
-                  className="mt-2 w-full rounded-[8px] border border-border bg-background-soft px-3.5 py-2.5 text-sm text-foreground transition-colors placeholder:text-muted-2 focus:border-olive focus:outline-hidden"
+                  className="mt-2 w-full rounded-[4px] border border-border bg-background-soft px-3.5 py-2.5 text-sm text-foreground transition-colors placeholder:text-muted-2 focus:border-olive focus:outline-hidden"
                   required
                 />
               </div>
@@ -130,7 +130,7 @@ export default function Contact() {
                 value={formData.subject}
                 onChange={handleChange}
                 placeholder="Internship opportunity, academic collaboration, question…"
-                className="mt-2 w-full rounded-[8px] border border-border bg-background-soft px-3.5 py-2.5 text-sm text-foreground transition-colors placeholder:text-muted-2 focus:border-olive focus:outline-hidden"
+                className="mt-2 w-full rounded-[4px] border border-border bg-background-soft px-3.5 py-2.5 text-sm text-foreground transition-colors placeholder:text-muted-2 focus:border-olive focus:outline-hidden"
               />
             </div>
 
@@ -148,14 +148,14 @@ export default function Contact() {
                 value={formData.message}
                 onChange={handleChange}
                 placeholder="Write your message here…"
-                className="mt-2 w-full resize-y rounded-[8px] border border-border bg-background-soft px-3.5 py-2.5 text-sm text-foreground transition-colors placeholder:text-muted-2 focus:border-olive focus:outline-hidden"
+                className="mt-2 w-full resize-y rounded-[4px] border border-border bg-background-soft px-3.5 py-2.5 text-sm text-foreground transition-colors placeholder:text-muted-2 focus:border-olive focus:outline-hidden"
                 required
               />
             </div>
 
             <button
               type="submit"
-              className="mt-6 flex w-full items-center justify-center gap-2 rounded-[10px] bg-olive py-3 text-sm font-semibold text-[#10110F] transition-colors hover:bg-olive-hover"
+              className="mt-6 flex w-full items-center justify-center gap-2 rounded-[4px] bg-olive py-3 text-sm font-semibold text-[#10110F] transition-colors hover:bg-olive-hover cursor-pointer"
             >
               Compose & Send Email
               <Send size={14} />
@@ -163,9 +163,9 @@ export default function Contact() {
 
             {feedback && (
               <div
-                className={`mt-4 rounded-lg border p-3.5 text-xs leading-relaxed ${
+                className={`mt-4 rounded-[4px] border p-3.5 text-xs leading-relaxed ${
                   feedback.status === "info"
-                    ? "border-olive/30 bg-surface-2/70 text-foreground"
+                    ? "border-olive/30 bg-surface-2 text-foreground"
                     : "border-border-strong bg-background-soft text-[#F2F1EA]"
                 }`}
               >
@@ -175,9 +175,9 @@ export default function Contact() {
           </form>
 
           {/* Direct Details Card */}
-          <div className="flex flex-col justify-between rounded-[14px] border border-border bg-surface p-6 shadow-[var(--shadow)] sm:p-8">
+          <div className="flex flex-col justify-between rounded-[4px] border border-border bg-surface p-6 sm:p-8">
             <div>
-              <h3 className="text-lg font-bold text-foreground">Direct Contact</h3>
+              <h3 className="text-base font-semibold text-foreground">Direct Contact</h3>
               <p className="mt-1 text-xs text-muted">
                 Student contact channel for academic and professional inquiries.
               </p>
@@ -186,7 +186,7 @@ export default function Contact() {
                 {/* Email row with copy button */}
                 <div className="flex items-center justify-between gap-4 py-4">
                   <div className="flex items-center gap-3.5">
-                    <span className="grid size-9 place-items-center rounded-lg border border-border bg-surface-2 text-olive">
+                    <span className="grid size-9 place-items-center rounded-[4px] border border-border bg-surface-2 text-olive">
                       <Mail size={16} />
                     </span>
                     <div>
@@ -205,13 +205,13 @@ export default function Contact() {
                   <button
                     type="button"
                     onClick={handleCopyEmail}
-                    className="flex items-center gap-1.5 rounded-md border border-border bg-surface-2 px-2.5 py-1 text-xs text-muted hover:border-olive hover:text-foreground transition-colors"
+                    className="flex items-center gap-1.5 rounded-[4px] border border-border bg-surface-2 px-2.5 py-1 text-xs text-muted hover:border-olive hover:text-foreground transition-colors cursor-pointer"
                     title="Copy email to clipboard"
                   >
                     {copied ? (
                       <>
                         <Check size={12} className="text-olive" />
-                        <span className="text-olive">Copied</span>
+                        <span className="text-olive font-medium">Copied</span>
                       </>
                     ) : (
                       <>
@@ -224,7 +224,7 @@ export default function Contact() {
 
                 {/* Location row */}
                 <div className="flex items-center gap-3.5 py-4">
-                  <span className="grid size-9 place-items-center rounded-lg border border-border bg-surface-2 text-olive">
+                  <span className="grid size-9 place-items-center rounded-[4px] border border-border bg-surface-2 text-olive">
                     <MapPin size={16} />
                   </span>
                   <div>
@@ -239,7 +239,7 @@ export default function Contact() {
 
                 {/* Affiliation row */}
                 <div className="flex items-center gap-3.5 py-4">
-                  <span className="grid size-9 place-items-center rounded-lg border border-border bg-surface-2 text-olive">
+                  <span className="grid size-9 place-items-center rounded-[4px] border border-border bg-surface-2 text-olive">
                     <GraduationCap size={16} />
                   </span>
                   <div>
@@ -255,7 +255,7 @@ export default function Contact() {
             </div>
 
             {/* Availability Box */}
-            <div className="mt-8 rounded-xl border border-border bg-surface-2/40 p-4 text-xs leading-relaxed text-muted">
+            <div className="mt-8 rounded-[4px] border border-border bg-surface-2/40 p-4 text-xs leading-relaxed text-muted">
               <div className="flex items-center gap-2 text-foreground font-semibold mb-1">
                 <span className="size-1.5 rounded-full bg-olive" />
                 Internship & Collaboration Status

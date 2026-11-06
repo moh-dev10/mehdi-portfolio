@@ -3,35 +3,25 @@
 :root {
   /* ============ BLACK & OLIVE PALETTE ============ */
   --background: #10110F;
-  --background-soft: #161814;
+  --background-soft: #141613;
 
-  --surface: #20231D;
-  --surface-2: #41483A;
+  --surface: #191B16;
+  --surface-2: #242820;
 
-  --border: rgba(242, 241, 234, 0.06);
-  --border-strong: rgba(242, 241, 234, 0.10);
+  --border: rgba(242, 241, 234, 0.08);
+  --border-strong: rgba(242, 241, 234, 0.14);
 
   --foreground: #F2F1EA;
   --muted: #A5A69D;
-  --muted-2: #7D8075;
+  --muted-2: #6E7166;
 
   /* Olive Accent */
   --olive: #92977F;
-  --olive-soft: rgba(146, 151, 127, 0.12);
-  --olive-hover: #A5AA92;
+  --olive-soft: rgba(146, 151, 127, 0.10);
+  --olive-hover: #A8AD95;
 
-  /* Color aliases redirected to Olive & monochrome palette */
-  --sky: #92977F;
-  --violet: #92977F;
-  --mint: #92977F;
-  --amber: #92977F;
-  --pink: #92977F;
-
-  /* Shape */
-  --radius: 14px;
-
-  /* Subtle minimal shadow */
-  --shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.65);
+  /* Swiss / Editorial restraint */
+  --radius: 4px;
 
   /* Animation */
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
@@ -64,8 +54,7 @@
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains-mono);
 
-  --animate-float: float 4s ease-in-out infinite;
-  --animate-marquee: marquee 32s linear infinite;
+  --animate-marquee: marquee 34s linear infinite;
 
   @keyframes marquee {
     from {
@@ -73,16 +62,6 @@
     }
     to {
       transform: translateX(-50%);
-    }
-  }
-
-  @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-6px);
     }
   }
 }
@@ -100,7 +79,7 @@ body {
   margin: 0;
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-inter), system-ui, sans-serif;
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
@@ -126,26 +105,32 @@ svg {
 }
 
 ::selection {
-  background: rgba(146, 151, 127, 0.3);
+  background: rgba(146, 151, 127, 0.35);
   color: #F2F1EA;
 }
 
 .mono {
-  font-family: var(--font-jetbrains-mono), monospace;
+  font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
 }
 
 /* Layout */
 .wrap {
   width: 100%;
-  max-width: 1180px;
+  max-width: 1120px;
   margin-inline: auto;
   padding-inline: 24px;
 }
 
 .section {
-  padding-block: 100px;
+  padding-block: 84px;
 }
 
 section {
   scroll-margin-top: 80px;
+}
+
+/* Subtle editorial divider */
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
 }

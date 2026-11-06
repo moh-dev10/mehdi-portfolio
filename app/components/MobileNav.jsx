@@ -38,22 +38,22 @@ export default function MobileNav() {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex size-[40px] flex-col items-center justify-center gap-[5px] rounded-[10px] border border-border bg-surface lg:hidden transition-colors hover:border-olive"
+        className="flex size-[40px] flex-col items-center justify-center gap-[5px] rounded-[4px] border border-border bg-surface lg:hidden transition-colors hover:border-olive"
         aria-label="Toggle navigation"
         aria-expanded={isOpen}
       >
         <span
-          className={`h-[1.5px] w-[18px] rounded bg-foreground transition-all duration-200 ${
+          className={`h-[1.5px] w-[18px] bg-foreground transition-all duration-200 ${
             isOpen ? "translate-y-[6.5px] rotate-45" : ""
           }`}
         />
         <span
-          className={`h-[1.5px] w-[18px] rounded bg-foreground transition-all duration-200 ${
+          className={`h-[1.5px] w-[18px] bg-foreground transition-all duration-200 ${
             isOpen ? "opacity-0" : ""
           }`}
         />
         <span
-          className={`h-[1.5px] w-[18px] rounded bg-foreground transition-all duration-200 ${
+          className={`h-[1.5px] w-[18px] bg-foreground transition-all duration-200 ${
             isOpen ? "-translate-y-[6.5px] -rotate-45" : ""
           }`}
         />
@@ -70,7 +70,7 @@ export default function MobileNav() {
 
       {/* Mobile Menu */}
       <div
-        className={`fixed top-[74px] right-4 left-4 z-40 rounded-[14px] border border-border-strong bg-surface p-3 shadow-2xl transition-all duration-200 lg:hidden ${
+        className={`fixed top-[74px] right-4 left-4 z-40 rounded-[4px] border border-border-strong bg-surface p-3 shadow-2xl transition-all duration-200 lg:hidden ${
           isOpen
             ? "translate-y-0 opacity-100"
             : "pointer-events-none -translate-y-2 opacity-0"
@@ -82,7 +82,7 @@ export default function MobileNav() {
               key={link.name}
               href={link.href}
               onClick={() => setIsOpen(false)}
-              className="block rounded-[8px] px-4 py-2.5 text-sm font-medium text-muted transition-colors hover:bg-surface-2 hover:text-foreground"
+              className="block rounded-[4px] px-4 py-2.5 text-sm font-medium text-muted transition-colors hover:bg-surface-2 hover:text-foreground"
             >
               {link.name}
             </a>
@@ -91,7 +91,7 @@ export default function MobileNav() {
           <a
             href="#contact"
             onClick={() => setIsOpen(false)}
-            className="mt-2 block rounded-[8px] border border-olive/30 bg-surface-2 px-4 py-2.5 text-center text-sm font-semibold text-olive transition-colors hover:border-olive"
+            className="mt-2 block rounded-[4px] border border-olive/30 bg-surface-2 px-4 py-2.5 text-center text-sm font-semibold text-olive transition-colors hover:border-olive"
           >
             Get in touch
           </a>

@@ -1,155 +1,129 @@
 import RadarChart from "./RadarChart";
 
-const skills = [
+const skillMatrix = [
   {
-    name: "Python",
-    stage: "Practicing",
-    level: 75,
-    note: "Data wrangling, automation & scripting",
+    category: "Languages & Core",
+    items: [
+      { name: "Python", status: "Primary tool", desc: "Data manipulation, scripts, notebook analysis" },
+      { name: "SQL", status: "Academic study", desc: "Relational queries, joins, aggregations" },
+    ],
   },
   {
-    name: "Pandas",
-    stage: "Practicing",
-    level: 75,
-    note: "Data exploration, grouping & cleaning",
+    category: "Data Analysis & ML",
+    items: [
+      { name: "Pandas & NumPy", status: "Frequent use", desc: "Data cleaning, reshaping, array operations" },
+      { name: "Scikit-learn", status: "Active study", desc: "Regression, classification, CV workflows" },
+      { name: "Matplotlib & Seaborn", status: "Frequent use", desc: "Exploratory plotting and statistical charts" },
+    ],
   },
   {
-    name: "NumPy",
-    stage: "Practicing",
-    level: 70,
-    note: "Array operations, vectorization & math",
+    category: "Mathematics & Statistics",
+    items: [
+      { name: "Probability & Inference", status: "L2 Curriculum", desc: "Distributions, hypothesis testing, estimators" },
+      { name: "Linear Algebra", status: "L2 Curriculum", desc: "Matrix operations, eigenvalues, projections" },
+    ],
   },
   {
-    name: "SQL",
-    stage: "Familiar with",
-    level: 60,
-    note: "Relational queries, joins & aggregations",
-  },
-  {
-    name: "Matplotlib & Seaborn",
-    stage: "Practicing",
-    level: 70,
-    note: "Statistical visualization & distribution plots",
-  },
-  {
-    name: "Scikit-learn",
-    stage: "Learning",
-    level: 55,
-    note: "Supervised models, pipelines & cross-validation",
-  },
-  {
-    name: "Statistics & Probability",
-    stage: "Academic core",
-    level: 70,
-    note: "USTHB curriculum: inference, distributions, linear algebra",
-  },
-  {
-    name: "Git & Jupyter",
-    stage: "Practicing",
-    level: 65,
-    note: "Notebook workflows, documentation & GitHub",
+    category: "Environment & Tools",
+    items: [
+      { name: "Jupyter Notebooks", status: "Daily", desc: "Reproducible research and analysis" },
+      { name: "Git & GitHub", status: "Practicing", desc: "Version control and project tracking" },
+    ],
   },
 ];
 
-const exploring = [
-  "Deep Learning",
-  "PyTorch",
-  "NLP",
-  "Docker",
-  "Airflow",
-  "Streamlit",
-  "Big Data",
+const nextStudies = [
+  { topic: "PyTorch", note: "Deep learning mathematical foundations" },
+  { topic: "Docker", note: "Containerized environments for reproducibility" },
+  { topic: "Streamlit", note: "Interactive prototypes for model demonstration" },
+  { topic: "NLP", note: "Text preprocessing & tokenization techniques" },
 ];
 
 export default function Skills() {
   return (
-    <section id="skills" className="section">
+    <section id="skills" className="section border-b border-border">
       <div className="wrap">
         {/* Section header */}
-        <div className="mb-14 max-w-3xl">
-          <span className="mono text-xs font-medium uppercase tracking-[0.14em] text-olive">
-            02 — Technical Skills
-          </span>
+        <div className="max-w-2xl">
+          <div className="mono text-xs uppercase tracking-[0.18em] text-olive">
+            02 / Technical Matrix
+          </div>
 
-          <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-foreground md:text-4xl">
-            Technical toolkit & academic development.
+          <h2 className="mt-4 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
+            Working toolset & academic proficiencies.
           </h2>
 
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted">
-            Categorized by practical familiarity and academic application rather than arbitrary scores.
+          <p className="mt-3 text-sm text-muted">
+            Organized by functional domain and current academic application rather than arbitrary scores.
           </p>
         </div>
 
-        {/* Skills layout */}
-        <div className="grid gap-6 lg:grid-cols-[1.25fr_0.75fr]">
-          {/* Skills list */}
-          <div className="rounded-[14px] border border-border bg-surface p-6 shadow-[var(--shadow)] sm:p-7">
-            <div className="space-y-6">
-              {skills.map((skill) => (
-                <div key={skill.name}>
-                  {/* Top */}
-                  <div className="mb-2 flex items-center justify-between">
-                    <span className="flex items-center gap-2.5 text-sm font-medium text-foreground">
-                      <span className="size-1.5 rounded-full bg-olive" />
-                      {skill.name}
-                    </span>
+        {/* 2-Column Layout */}
+        <div className="mt-12 grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16">
+          {/* Left: Structured Matrix */}
+          <div className="space-y-8">
+            {skillMatrix.map((group) => (
+              <div key={group.category} className="border-t border-border pt-4">
+                <span className="mono text-[11px] uppercase tracking-wider text-muted-2">
+                  {group.category}
+                </span>
 
-                    <span className="mono rounded border border-border bg-surface-2 px-2 py-0.5 text-[11px] text-olive">
-                      {skill.stage}
-                    </span>
-                  </div>
-
-                  {/* Progress indicator */}
-                  <div className="h-1.5 overflow-hidden rounded-full bg-surface-2">
+                <div className="mt-3 divide-y divide-border">
+                  {group.items.map((item) => (
                     <div
-                      className="h-full rounded-full bg-olive transition-all duration-300"
-                      style={{ width: `${skill.level}%` }}
-                    />
-                  </div>
+                      key={item.name}
+                      className="flex flex-col justify-between py-2.5 sm:flex-row sm:items-baseline sm:gap-4"
+                    >
+                      <div className="flex items-baseline gap-3">
+                        <span className="text-sm font-medium text-foreground">
+                          {item.name}
+                        </span>
+                        <span className="text-xs text-muted-2">
+                          {item.desc}
+                        </span>
+                      </div>
 
-                  <p className="mt-1.5 text-xs text-muted-2">
-                    {skill.note}
-                  </p>
+                      <span className="mono mt-1 shrink-0 text-[11px] text-olive sm:mt-0">
+                        {item.status}
+                      </span>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
 
-          {/* Right side */}
-          <div className="space-y-6">
-            {/* Radar */}
-            <div className="rounded-[14px] border border-border bg-surface p-6 shadow-[var(--shadow)] sm:p-7">
-              <h3 className="text-sm font-semibold text-foreground">
-                Skill balance
-              </h3>
-
-              <p className="mono mt-1 text-xs text-muted-2">
-                {"//"} academic self-assessment
-              </p>
-
-              <div className="mt-4 flex min-h-[260px] items-center justify-center">
+          {/* Right: Radar balance & Study topics */}
+          <div className="space-y-10 lg:border-l lg:border-border lg:pl-10">
+            {/* Minimal Radar Chart */}
+            <div>
+              <span className="mono text-[11px] uppercase tracking-wider text-muted-2">
+                Relative Balance · Academic Self-Assessment
+              </span>
+              <div className="mt-4 flex items-center justify-center rounded-[4px] border border-border bg-surface p-6">
                 <RadarChart />
               </div>
             </div>
 
-            {/* Currently exploring */}
-            <div className="rounded-[14px] border border-border bg-surface p-6 shadow-[var(--shadow)] sm:p-7">
-              <h3 className="text-sm font-semibold text-foreground">
-                Currently exploring
-              </h3>
+            {/* Next Studies */}
+            <div className="border-t border-border pt-6">
+              <span className="mono text-[11px] uppercase tracking-wider text-muted-2">
+                Upcoming Academic Exploration
+              </span>
 
-              <p className="mono mt-1 text-xs text-muted-2">
-                {"//"} upcoming study & practice areas
-              </p>
-
-              <div className="mt-4 flex flex-wrap gap-2">
-                {exploring.map((item) => (
-                  <span
-                    key={item}
-                    className="rounded-full border border-border bg-surface-2 px-3 py-1 text-xs text-muted transition-colors hover:border-olive hover:text-foreground"
+              <div className="mt-4 space-y-3">
+                {nextStudies.map((study) => (
+                  <div
+                    key={study.topic}
+                    className="flex items-baseline justify-between rounded-[4px] border border-border bg-surface px-3.5 py-2.5 text-xs"
                   >
-                    {item}
-                  </span>
+                    <span className="font-medium text-foreground">
+                      {study.topic}
+                    </span>
+                    <span className="mono text-muted-2">
+                      {study.note}
+                    </span>
+                  </div>
                 ))}
               </div>
             </div>

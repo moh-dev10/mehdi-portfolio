@@ -2,63 +2,66 @@ import Image from "next/image";
 
 export default function ProjectCard({ project }) {
   return (
-    <article className="group overflow-hidden rounded-[14px] border border-border bg-surface shadow-[var(--shadow)] transition-colors duration-200 hover:border-border-strong">
-      <div className="relative aspect-[16/9] overflow-hidden bg-surface-2/40">
-        <Image
-          src={project.image}
-          alt={project.title}
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-        />
+    <article className="group flex flex-col justify-between rounded-[4px] border border-border bg-surface transition-colors duration-150 hover:border-border-strong">
+      <div>
+        <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-border bg-surface-2/40">
+          <Image
+            src={project.image}
+            alt={project.title}
+            fill
+            referrerPolicy="no-referrer"
+            className="object-cover transition-opacity duration-300 opacity-90 group-hover:opacity-100"
+          />
+        </div>
+
+        <div className="p-5 sm:p-6">
+          <span className="mono text-[11px] uppercase tracking-wider text-olive">
+            {project.category}
+          </span>
+
+          <h3 className="mt-2 text-lg font-semibold text-foreground">
+            {project.title}
+          </h3>
+
+          <p className="mt-2 text-xs leading-relaxed text-muted sm:text-sm">
+            {project.description}
+          </p>
+
+          <div className="mt-4 flex flex-wrap gap-1.5">
+            {project.tags.map((tag) => (
+              <span
+                key={tag}
+                className="mono rounded-[2px] border border-border bg-background-soft px-2 py-0.5 text-[11px] text-muted-2"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
 
-      <div className="p-6">
-        <span className="mono text-xs uppercase tracking-[0.14em] text-olive">
-          {project.category}
-        </span>
+      <div className="flex items-center gap-4 border-t border-border px-5 py-3 text-xs sm:px-6">
+        {project.githubUrl && (
+          <a
+            href={project.githubUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="font-medium text-foreground transition-colors hover:text-olive"
+          >
+            GitHub ↗
+          </a>
+        )}
 
-        <h3 className="mt-2 text-xl font-semibold text-foreground">
-          {project.title}
-        </h3>
-
-        <p className="mt-2.5 text-sm leading-relaxed text-muted">
-          {project.description}
-        </p>
-
-        <div className="mt-5 flex flex-wrap gap-2">
-          {project.tags.map((tag) => (
-            <span
-              key={tag}
-              className="mono rounded-full border border-border bg-surface-2 px-2.5 py-1 text-xs text-muted"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-
-        <div className="mt-6 flex items-center gap-4 border-t border-border pt-4">
-          {project.githubUrl && (
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="text-sm font-medium text-foreground transition-colors hover:text-olive"
-            >
-              GitHub ↗
-            </a>
-          )}
-
-          {project.demoUrl && (
-            <a
-              href={project.demoUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="text-sm font-medium text-foreground transition-colors hover:text-olive"
-            >
-              Live demo ↗
-            </a>
-          )}
-        </div>
+        {project.demoUrl && (
+          <a
+            href={project.demoUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="font-medium text-foreground transition-colors hover:text-olive"
+          >
+            Live demo ↗
+          </a>
+        )}
       </div>
     </article>
   );

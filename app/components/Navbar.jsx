@@ -50,7 +50,7 @@ export default function Navbar() {
       <div className="wrap flex h-[68px] items-center justify-between">
         {/* Brand */}
         <a href="#hero" className="flex items-center gap-[11px] group">
-          <span className="grid size-[34px] place-items-center rounded-[10px] border border-border-strong bg-surface text-[0.95rem] font-semibold text-olive transition-colors group-hover:border-olive">
+          <span className="grid size-[34px] place-items-center rounded-[4px] border border-border-strong bg-surface text-[0.95rem] font-semibold text-olive transition-colors group-hover:border-olive">
             M
           </span>
 
@@ -69,7 +69,7 @@ export default function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-                className={`relative rounded-[8px] px-3.5 py-1.5 text-[0.88rem] font-medium transition-colors ${
+                className={`relative rounded-[4px] px-3.5 py-1.5 text-[0.88rem] font-medium transition-colors ${
                   isActive
                     ? "text-foreground"
                     : "text-muted hover:bg-surface hover:text-foreground"
@@ -88,7 +88,7 @@ export default function Navbar() {
         <div className="hidden lg:flex lg:items-center">
           <a
             href="#contact"
-            className="flex items-center gap-2 rounded-full border border-border-strong bg-surface px-4 py-2 text-[0.88rem] font-medium text-foreground transition-all hover:border-olive hover:text-olive"
+            className="flex items-center gap-2 rounded-[4px] border border-border-strong bg-surface px-3.5 py-1.5 text-[0.88rem] font-medium text-foreground transition-all hover:border-olive hover:text-olive"
           >
             <span>Contact</span>
             <ArrowRight size={15} className="-rotate-45" />
