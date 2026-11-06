@@ -1,3 +1,5 @@
+import Reveal from "./Reveal";
+
 export default function About() {
   const areas = [
     {
@@ -21,76 +23,84 @@ export default function About() {
     <section id="about" className="section border-b border-border">
       <div className="wrap">
         {/* Section Header */}
-        <div className="max-w-2xl">
-          <div className="mono text-xs uppercase tracking-[0.18em] text-olive">
-            01 / Background
-          </div>
+        <Reveal delay={0}>
+          <div className="max-w-2xl">
+            <div className="mono text-xs uppercase tracking-[0.18em] text-olive">
+              01 / Background
+            </div>
 
-          <h2 className="mt-4 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
-            Building mathematical and applied foundations at USTHB.
-          </h2>
-        </div>
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
+              Building mathematical and applied foundations at USTHB.
+            </h2>
+          </div>
+        </Reveal>
 
         {/* Narrative & Profile Grid */}
         <div className="mt-10 grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16">
-          <div className="space-y-5 text-sm leading-relaxed text-muted sm:text-base">
-            <p>
-              I am a second-year undergraduate student enrolled in the Data Science program at <strong className="font-medium text-foreground">USTHB (Université des Sciences et de la Technologie Houari Boumediene)</strong> in Algiers. My curriculum balances foundational coursework in probability, statistical inference, algorithms, and linear algebra with weekly computer science laboratory sessions.
-            </p>
+          <Reveal delay={40}>
+            <div className="space-y-5 text-sm leading-relaxed text-muted sm:text-base">
+              <p>
+                I am a second-year undergraduate student enrolled in the Data Science program at <strong className="font-medium text-foreground">USTHB (Université des Sciences et de la Technologie Houari Boumediene)</strong> in Algiers. My curriculum balances foundational coursework in probability, statistical inference, algorithms, and linear algebra with weekly computer science laboratory sessions.
+              </p>
 
-            <p>
-              Outside lecture halls, I work with Python&apos;s data ecosystem — primarily <strong className="font-medium text-foreground">Pandas</strong> and <strong className="font-medium text-foreground">NumPy</strong> for structuring data arrays, and <strong className="font-medium text-foreground">SQL</strong> for database querying. I am particularly interested in how data preprocessing decisions impact downstream modeling performance.
-            </p>
+              <p>
+                Outside lecture halls, I work with Python&apos;s data ecosystem — primarily <strong className="font-medium text-foreground">Pandas</strong> and <strong className="font-medium text-foreground">NumPy</strong> for structuring data arrays, and <strong className="font-medium text-foreground">SQL</strong> for database querying. I am particularly interested in how data preprocessing decisions impact downstream modeling performance.
+              </p>
 
-            <p>
-              I believe the most valuable skill as a student is humility in front of data: checking assumptions, verifying data integrity, and avoiding premature optimization.
-            </p>
-          </div>
+              <p>
+                I believe the most valuable skill as a student is humility in front of data: checking assumptions, verifying data integrity, and avoiding premature optimization.
+              </p>
+            </div>
+          </Reveal>
 
           {/* Quick Academic Facts */}
-          <div className="border-t border-border pt-6 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-10">
-            <span className="mono text-[11px] uppercase tracking-wider text-muted-2">
-              Academic Context
-            </span>
+          <Reveal delay={100}>
+            <div className="border-t border-border pt-6 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-10">
+              <span className="mono text-[11px] uppercase tracking-wider text-muted-2">
+                Academic Context
+              </span>
 
-            <div className="mt-4 space-y-4 text-xs">
-              <div>
-                <span className="mono block text-muted-2">University</span>
-                <span className="font-medium text-foreground">
-                  Université des Sciences et de la Technologie Houari Boumediene (USTHB)
-                </span>
-              </div>
+              <div className="mt-4 space-y-4 text-xs">
+                <div>
+                  <span className="mono block text-muted-2">University</span>
+                  <span className="font-medium text-foreground">
+                    Université des Sciences et de la Technologie Houari Boumediene (USTHB)
+                  </span>
+                </div>
 
-              <div>
-                <span className="mono block text-muted-2">Department</span>
-                <span className="font-medium text-foreground">Faculty of Mathematics & Computer Science</span>
-              </div>
+                <div>
+                  <span className="mono block text-muted-2">Department</span>
+                  <span className="font-medium text-foreground">Faculty of Mathematics & Computer Science</span>
+                </div>
 
-              <div>
-                <span className="mono block text-muted-2">Languages</span>
-                <span className="font-medium text-foreground">French (fluent), English (fluent), Arabic (native)</span>
-              </div>
+                <div>
+                  <span className="mono block text-muted-2">Languages</span>
+                  <span className="font-medium text-foreground">French (fluent), English (fluent), Arabic (native)</span>
+                </div>
 
-              <div>
-                <span className="mono block text-muted-2">Location</span>
-                <span className="font-medium text-foreground">Algiers, Algeria</span>
+                <div>
+                  <span className="mono block text-muted-2">Location</span>
+                  <span className="font-medium text-foreground">Algiers, Algeria</span>
+                </div>
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
 
         {/* 3 Core Competency Pillars (Swiss 3-column grid) */}
         <div className="mt-14 grid gap-8 border-t border-border pt-10 sm:grid-cols-3">
-          {areas.map((area) => (
-            <div key={area.num} className="space-y-2">
-              <span className="mono text-xs text-olive">{area.num}</span>
-              <h3 className="text-sm font-semibold text-foreground">
-                {area.title}
-              </h3>
-              <p className="text-xs leading-relaxed text-muted">
-                {area.text}
-              </p>
-            </div>
+          {areas.map((area, index) => (
+            <Reveal key={area.num} delay={index * 80}>
+              <div className="space-y-2">
+                <span className="mono text-xs text-olive">{area.num}</span>
+                <h3 className="text-sm font-semibold text-foreground">
+                  {area.title}
+                </h3>
+                <p className="text-xs leading-relaxed text-muted">
+                  {area.text}
+                </p>
+              </div>
+            </Reveal>
           ))}
         </div>
       </div>

@@ -30,6 +30,11 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${inter.variable} ${jetbrainsMono.variable}`}
     >
+      <head>
+        <noscript>
+          <style>{`.reveal-hidden { opacity: 1 !important; transform: none !important; }`}</style>
+        </noscript>
+      </head>
       <body className="bg-background text-foreground antialiased selection:bg-olive/30 selection:text-foreground">
         <ScrollProgress />
         {children}

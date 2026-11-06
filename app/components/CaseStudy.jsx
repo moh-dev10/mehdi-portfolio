@@ -1,3 +1,5 @@
+import Reveal from "./Reveal";
+
 export default function CaseStudy() {
   const points = [
     {
@@ -39,69 +41,73 @@ export default function CaseStudy() {
     <section id="case" className="section border-b border-border">
       <div className="wrap">
         {/* Section header */}
-        <div className="max-w-2xl">
-          <div className="mono text-xs uppercase tracking-[0.18em] text-olive">
-            04 / Case Study
+        <Reveal delay={0}>
+          <div className="max-w-2xl">
+            <div className="mono text-xs uppercase tracking-[0.18em] text-olive">
+              04 / Case Study
+            </div>
+
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
+              Algerian property price estimation.
+            </h2>
+
+            <p className="mt-3 text-sm text-muted">
+              An exploratory student project investigating the preprocessing, feature engineering, and regression modeling required for messy real-world classifieds.
+            </p>
           </div>
-
-          <h2 className="mt-4 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
-            Algerian property price estimation.
-          </h2>
-
-          <p className="mt-3 text-sm text-muted">
-            An exploratory student project investigating the preprocessing, feature engineering, and regression modeling required for messy real-world classifieds.
-          </p>
-        </div>
+        </Reveal>
 
         {/* Technical overview sheet */}
-        <div className="mt-12 rounded-[4px] border border-border bg-surface p-6 sm:p-8">
-          <div className="flex flex-col justify-between gap-4 border-b border-border pb-5 sm:flex-row sm:items-baseline">
-            <div>
-              <span className="mono text-[11px] uppercase tracking-wider text-muted-2">
-                Project Classification
-              </span>
-              <h3 className="mt-1 text-lg font-semibold text-foreground">
-                Supervised Regression on Local Real Estate Data
-              </h3>
-            </div>
-
-            <div className="mono text-xs text-olive">
-              Tools: Python · Pandas · Scikit-learn
-            </div>
-          </div>
-
-          {/* 3 Step Editorial Grid */}
-          <div className="mt-8 grid gap-8 lg:grid-cols-3">
-            {points.map((p) => (
-              <div key={p.step} className="flex flex-col justify-between">
-                <div>
-                  <div className="flex items-baseline justify-between border-b border-border pb-2">
-                    <span className="mono text-[11px] text-olive">{p.step}</span>
-                    <span className="text-xs font-semibold text-foreground">{p.title}</span>
-                  </div>
-
-                  <p className="mt-3 text-xs leading-relaxed text-muted">
-                    {p.summary}
-                  </p>
-
-                  <ul className="mt-4 space-y-2 text-xs text-muted-2">
-                    {p.items.map((it, idx) => (
-                      <li key={idx} className="flex items-start gap-2">
-                        <span className="mt-1.5 size-1 shrink-0 rounded-full bg-olive" />
-                        <span>{it}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+        <Reveal delay={60} duration={600}>
+          <div className="mt-12 rounded-[4px] border border-border bg-surface p-6 sm:p-8">
+            <div className="flex flex-col justify-between gap-4 border-b border-border pb-5 sm:flex-row sm:items-baseline">
+              <div>
+                <span className="mono text-[11px] uppercase tracking-wider text-muted-2">
+                  Project Classification
+                </span>
+                <h3 className="mt-1 text-lg font-semibold text-foreground">
+                  Supervised Regression on Local Real Estate Data
+                </h3>
               </div>
-            ))}
-          </div>
 
-          <div className="mt-8 border-t border-border pt-4 text-xs text-muted-2">
-            <span className="font-medium text-foreground">Summary note: </span>
-            This exploration served as an academic exercise in end-to-end data processing, emphasizing empirical validation and data integrity over artificial benchmark claims.
+              <div className="mono text-xs text-olive">
+                Tools: Python · Pandas · Scikit-learn
+              </div>
+            </div>
+
+            {/* 3 Step Editorial Grid */}
+            <div className="mt-8 grid gap-8 lg:grid-cols-3">
+              {points.map((p) => (
+                <div key={p.step} className="flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-baseline justify-between border-b border-border pb-2">
+                      <span className="mono text-[11px] text-olive">{p.step}</span>
+                      <span className="text-xs font-semibold text-foreground">{p.title}</span>
+                    </div>
+
+                    <p className="mt-3 text-xs leading-relaxed text-muted">
+                      {p.summary}
+                    </p>
+
+                    <ul className="mt-4 space-y-2 text-xs text-muted-2">
+                      {p.items.map((it, idx) => (
+                        <li key={idx} className="flex items-start gap-2">
+                          <span className="mt-1.5 size-1 shrink-0 rounded-full bg-olive" />
+                          <span>{it}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-8 border-t border-border pt-4 text-xs text-muted-2">
+              <span className="font-medium text-foreground">Summary note: </span>
+              This exploration served as an academic exercise in end-to-end data processing, emphasizing empirical validation and data integrity over artificial benchmark claims.
+            </div>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
