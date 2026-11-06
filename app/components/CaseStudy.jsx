@@ -2,265 +2,154 @@
 
 import { useState } from "react";
 
-const tabContent = {
-  problem: {
-    title: "Problem",
-    lead: "Real estate listings across Algiers, Oran, and Constantine are published in wildly different formats, with prices sometimes per square metre and sometimes per unit, and with location described only as free text.",
-    points: [
+const sections = [
+  {
+    id: "problem",
+    title: "1. Problem & Dataset Nuances",
+    summary:
+      "Real estate classifieds across Algerian urban areas are published in varied, unstructured formats with inconsistent notation.",
+    details: [
       {
-        bold: "Inconsistent data.",
-        text: "Same property described five different ways across platforms with unstandardized fields.",
+        heading: "Inconsistent field formats",
+        desc: "Prices are sometimes stated per unit and sometimes per square metre, requiring explicit normalization rules.",
       },
       {
-        bold: "No market transparency.",
-        text: "Buyers and small agencies have no trustworthy reference for a fair market price.",
+        heading: "Free-text location data",
+        desc: "Commune and neighborhood information is often entered as mixed French and Arabic descriptions rather than structured keys.",
       },
       {
-        bold: "Strong location effect.",
-        text: "Commune and distance to city centre drive most of the price variance.",
-      },
-    ],
-  },
-  approach: {
-    title: "Approach",
-    lead: "A fully reproducible pipeline built with Pandas and Scikit-learn, versioned from raw scrape to tuned model.",
-    points: [
-      {
-        bold: "Data cleaning.",
-        text: "De-duplicated listings, normalised currency units, and parsed unstructured French/Arabic location text.",
-      },
-      {
-        bold: "Feature engineering.",
-        text: "Surface area, rooms, floor, commune, distance to city centre, building age, and listing freshness — 12 features total.",
-      },
-      {
-        bold: "Modelling & CV.",
-        text: "Benchmarked 5 algorithms with 5-fold cross-validation, then tuned Gradient Boosting on RMSE.",
-      },
-      {
-        bold: "Explainability.",
-        text: "Calculated permutation feature importance to verify that the model learned realistic pricing drivers.",
+        heading: "Extreme distribution skew",
+        desc: "High price dispersion between prime city-center apartments and suburban listings necessitated robust outlier handling.",
       },
     ],
   },
-  results: {
-    title: "Results",
-    lead: "The tuned Gradient Boosting model beat the linear baseline decisively and delivered an explainable valuation tool.",
-    points: [
+  {
+    id: "approach",
+    title: "2. Analytical Approach",
+    summary:
+      "A step-by-step pipeline developed in Python using Pandas for preprocessing and Scikit-learn for model evaluation.",
+    details: [
       {
-        bold: "+28% R² gain",
-        text: "Achieved an R² of 0.89 compared to 0.61 on the ordinary least-squares baseline.",
+        heading: "Data cleaning & extraction",
+        desc: "Regex routines to extract square footage, remove duplicates, and normalize currency denominations.",
       },
       {
-        bold: "Primary predictors:",
-        text: "Usable surface area, commune density, and travel distance to the commercial hub.",
+        heading: "Feature preparation",
+        desc: "Engineered categorical indicators for commune, property type, room count, and floor levels.",
       },
       {
-        bold: "Error reduced",
-        text: "Median absolute error dropped to approximately 11% of listing valuation.",
-      },
-      {
-        bold: "Interactive demo",
-        text: "Shipped an interactive lightweight interface where users input key features to receive instant price ranges.",
+        heading: "Evaluation methodology",
+        desc: "Benchmarked a baseline linear model against tree-based regressors using 5-fold cross-validation to assess generalization.",
       },
     ],
   },
-};
-
-const models = [
-  { name: "OLS baseline", score: 0.61, highlight: false },
-  { name: "Ridge", score: 0.72, highlight: false },
-  { name: "Random Forest", score: 0.84, highlight: false },
-  { name: "Gradient Boosting", score: 0.87, highlight: true },
-  { name: "Tuned GBM", score: 0.89, highlight: true },
+  {
+    id: "learnings",
+    title: "3. Learning Outcomes",
+    summary:
+      "Practical lessons gathered from working with real, messy data outside clean textbook datasets.",
+    details: [
+      {
+        heading: "Data quality outweighs model complexity",
+        desc: "Careful imputation and outlier clipping produced more reliable predictions than extensive hyperparameter tuning.",
+      },
+      {
+        heading: "Log-transformations on skewed targets",
+        desc: "Applying log1p transforms to price targets stabilized linear models and improved residual normality.",
+      },
+      {
+        heading: "Validation discipline",
+        desc: "Understanding why simple random splits can overestimate performance on spatially clustered data.",
+      },
+    ],
+  },
 ];
 
 export default function CaseStudy() {
   const [activeTab, setActiveTab] = useState("problem");
-  const [hoveredModel, setHoveredModel] = useState(null);
 
-  const currentTab = tabContent[activeTab];
+  const currentSection = sections.find((s) => s.id === activeTab) || sections[0];
 
   return (
     <section id="case" className="section">
       <div className="wrap">
         {/* Section header */}
         <div className="mb-14 max-w-3xl">
-          <span className="mono text-xs font-medium uppercase tracking-[0.14em] text-sky">
-            04 — Project Deep Dive
+          <span className="mono text-xs font-medium uppercase tracking-[0.14em] text-olive">
+            04 — Case Study
           </span>
 
           <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-foreground md:text-4xl">
-            Deep dive: the real estate price model.
+            Exploratory project: real estate price estimation.
           </h2>
 
-          <p className="mt-5 max-w-2xl text-base leading-7 text-muted">
-            How a raw scrape of messy classified ads became a model with an R² of 0.89 and an interactive valuation demo.
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted">
+            A student machine learning exploration documenting the data cleaning, feature preparation, and modeling workflow on local property listings.
           </p>
         </div>
 
         {/* Case Card */}
-        <div className="overflow-hidden rounded-[var(--radius)] border border-border bg-surface shadow-[var(--shadow)]">
-          {/* Top Banner */}
-          <div className="relative border-b border-border p-6 md:p-8">
-            {/* Background Glow */}
-            <div className="pointer-events-none absolute -top-24 -right-12 size-72 rounded-full bg-sky/15 blur-3xl" />
+        <div className="rounded-[14px] border border-border bg-surface p-6 shadow-[var(--shadow)] sm:p-8">
+          {/* Header pill */}
+          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border pb-6">
+            <div>
+              <span className="mono text-xs text-olive">
+                Supervised Learning Exploration
+              </span>
+              <h3 className="mt-1 text-2xl font-bold text-foreground">
+                Algerian Property Price Estimation Pipeline
+              </h3>
+            </div>
 
-            <span className="mono inline-block rounded-full border border-violet/30 bg-violet/10 px-3 py-1 text-xs uppercase tracking-wider text-violet">
-              Featured Case Study
-            </span>
-
-            <h3 className="mt-4 text-2xl font-bold tracking-tight text-foreground md:text-3xl">
-              Algerian Real Estate Price Predictor
-            </h3>
-
-            <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted md:text-base">
-              Property listings in Algeria are inconsistent, unstandardised and full of noise. This project builds a
-              reproducible pipeline that cleans, engineers, and models them into a trustworthy price estimate.
-            </p>
-
-            {/* Metrics Grid */}
-            <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
-              <div className="rounded-xl border border-border bg-background-soft/80 p-4">
-                <span className="text-2xl font-bold text-sky md:text-3xl">0.89</span>
-                <span className="mono mt-1 block text-xs uppercase tracking-wider text-muted-2">
-                  R² Score
-                </span>
-              </div>
-
-              <div className="rounded-xl border border-border bg-background-soft/80 p-4">
-                <span className="text-2xl font-bold text-foreground md:text-3xl">18.4k</span>
-                <span className="mono mt-1 block text-xs uppercase tracking-wider text-muted-2">
-                  Listings cleaned
-                </span>
-              </div>
-
-              <div className="rounded-xl border border-border bg-background-soft/80 p-4">
-                <span className="text-2xl font-bold text-mint md:text-3xl">−24%</span>
-                <span className="mono mt-1 block text-xs uppercase tracking-wider text-muted-2">
-                  MAE vs baseline
-                </span>
-              </div>
-
-              <div className="rounded-xl border border-border bg-background-soft/80 p-4">
-                <span className="text-2xl font-bold text-violet md:text-3xl">12</span>
-                <span className="mono mt-1 block text-xs uppercase tracking-wider text-muted-2">
-                  Engineered features
-                </span>
-              </div>
+            <div className="flex items-center gap-2">
+              <span className="mono rounded border border-border bg-surface-2 px-3 py-1 text-xs text-muted">
+                Python · Pandas · Scikit-learn
+              </span>
             </div>
           </div>
 
-          {/* Split Content: Tabs & Chart */}
-          <div className="grid lg:grid-cols-2">
-            {/* Left: Tabbed narrative */}
-            <div className="border-b border-border p-6 md:p-8 lg:border-r lg:border-b-0">
-              {/* Tab Selector */}
-              <div className="flex gap-2">
-                {Object.keys(tabContent).map((key) => {
-                  const isActive = activeTab === key;
-                  return (
-                    <button
-                      key={key}
-                      type="button"
-                      onClick={() => setActiveTab(key)}
-                      className={`rounded-lg px-4 py-2 text-xs font-semibold capitalize transition-all duration-200 ${
-                        isActive
-                          ? "border border-sky/30 bg-sky/15 text-sky"
-                          : "border border-transparent text-muted hover:bg-white/5 hover:text-foreground"
-                      }`}
-                    >
-                      {tabContent[key].title}
-                    </button>
-                  );
-                })}
-              </div>
+          {/* Tab Selector */}
+          <div className="mt-6 flex flex-wrap gap-2 border-b border-border pb-4">
+            {sections.map((sec) => {
+              const isActive = activeTab === sec.id;
+              return (
+                <button
+                  key={sec.id}
+                  type="button"
+                  onClick={() => setActiveTab(sec.id)}
+                  className={`rounded-[8px] px-4 py-2 text-xs font-medium transition-colors ${
+                    isActive
+                      ? "border border-olive/40 bg-surface-2 text-olive"
+                      : "border border-transparent text-muted hover:bg-surface-2 hover:text-foreground"
+                  }`}
+                >
+                  {sec.title}
+                </button>
+              );
+            })}
+          </div>
 
-              {/* Tab Content */}
-              <div className="mt-6">
-                <p className="text-sm leading-relaxed text-muted">
-                  {currentTab.lead}
-                </p>
+          {/* Content Pane */}
+          <div className="mt-6">
+            <p className="text-sm font-medium leading-relaxed text-foreground">
+              {currentSection.summary}
+            </p>
 
-                <ul className="mt-5 space-y-3.5">
-                  {currentTab.points.map((pt, idx) => (
-                    <li key={idx} className="flex items-start gap-3 text-sm leading-relaxed text-muted">
-                      <span className="mt-2 size-1.5 shrink-0 rounded-full bg-sky shadow-[0_0_8px_var(--sky)]" />
-                      <span>
-                        <strong className="font-semibold text-foreground">{pt.bold} </strong>
-                        {pt.text}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            {/* Right: Model Comparison Chart */}
-            <div className="flex flex-col justify-center bg-black/20 p-6 md:p-8">
-              <div className="mb-6 flex items-center justify-between">
-                <div>
-                  <h4 className="text-sm font-semibold text-foreground">
-                    Model comparison — R² by algorithm
+            <div className="mt-6 grid gap-4 sm:grid-cols-3">
+              {currentSection.details.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="rounded-xl border border-border bg-background-soft/60 p-4.5"
+                >
+                  <h4 className="flex items-center gap-2 text-xs font-semibold text-olive">
+                    <span className="size-1 rounded-full bg-olive" />
+                    {item.heading}
                   </h4>
-                  <p className="mono mt-0.5 text-xs text-muted-2">
-                    5-fold cross-validation on test set
+                  <p className="mt-2 text-xs leading-relaxed text-muted">
+                    {item.desc}
                   </p>
                 </div>
-                {hoveredModel && (
-                  <span className="mono rounded bg-surface-2 px-2 py-0.5 text-xs text-sky">
-                    R² = {hoveredModel.score.toFixed(2)}
-                  </span>
-                )}
-              </div>
-
-              {/* Bar Chart Visualization */}
-              <div className="space-y-4">
-                {models.map((m) => {
-                  const widthPercent = (m.score / 1.0) * 100;
-                  return (
-                    <div
-                      key={m.name}
-                      onMouseEnter={() => setHoveredModel(m)}
-                      onMouseLeave={() => setHoveredModel(null)}
-                      className="group cursor-default"
-                    >
-                      <div className="mb-1.5 flex items-center justify-between text-xs">
-                        <span
-                          className={`font-medium ${
-                            m.highlight ? "text-foreground" : "text-muted"
-                          }`}
-                        >
-                          {m.name}
-                        </span>
-                        <span className="mono text-muted">
-                          {m.score.toFixed(2)}
-                        </span>
-                      </div>
-
-                      <div className="h-4 overflow-hidden rounded-md bg-surface-2">
-                        <div
-                          className={`h-full rounded-md transition-all duration-500 ${
-                            m.highlight
-                              ? "bg-linear-to-r from-sky to-violet shadow-[0_0_12px_rgba(56,189,248,0.4)]"
-                              : "bg-muted-2/40 group-hover:bg-muted-2/60"
-                          }`}
-                          style={{ width: `${widthPercent}%` }}
-                        />
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-
-              <div className="mono mt-6 flex justify-between border-t border-border pt-4 text-[10px] text-muted-2">
-                <span>0.0</span>
-                <span>0.2</span>
-                <span>0.4</span>
-                <span>0.6</span>
-                <span>0.8</span>
-                <span>1.0</span>
-              </div>
+              ))}
             </div>
           </div>
         </div>

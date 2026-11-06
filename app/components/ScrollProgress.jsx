@@ -23,11 +23,10 @@ export default function ScrollProgress() {
   return (
     <div
       aria-hidden="true"
-      className="fixed top-0 left-0 z-100 h-[2px] transition-[width] duration-75 ease-linear pointer-events-none"
+      className="fixed top-0 left-0 z-50 h-[2px] transition-[width] duration-75 ease-linear pointer-events-none"
       style={{
         width: `${scrollWidth}%`,
-        background: "var(--gradient)",
-        boxShadow: "0 0 16px rgba(56, 189, 248, 0.7)",
+        backgroundColor: "#92977F",
       }}
     />
   );

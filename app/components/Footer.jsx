@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className="mt-20 border-t border-border py-8 text-sm text-muted">
       <div className="wrap flex flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left">
         <p className="text-xs text-muted-2">
-          © {currentYear} Mehdi — Data Science Student, USTHB Algiers. Built from scratch.
+          © {currentYear} Mehdi — Data Science Student, USTHB Algiers.
         </p>
 
         <div className="flex items-center gap-6 text-xs">
@@ -15,7 +15,7 @@ export default function Footer() {
             href="https://github.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-muted transition-colors hover:text-sky"
+            className="text-muted transition-colors hover:text-olive"
           >
             GitHub
           </a>
@@ -23,13 +23,13 @@ export default function Footer() {
             href="https://www.linkedin.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-muted transition-colors hover:text-sky"
+            className="text-muted transition-colors hover:text-olive"
           >
             LinkedIn
           </a>
           <a
             href="#hero"
-            className="inline-flex items-center gap-1 font-medium text-muted transition-colors hover:text-sky"
+            className="inline-flex items-center gap-1 font-medium text-muted transition-colors hover:text-olive"
           >
             Back to top
             <ArrowUp size={13} />

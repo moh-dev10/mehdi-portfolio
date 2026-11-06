@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, MapPin, Clock, Briefcase, Send, CheckCircle2, AlertCircle } from "lucide-react";
+import { Mail, MapPin, GraduationCap, Send, Copy, Check } from "lucide-react";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -10,29 +10,13 @@ export default function Contact() {
     subject: "",
     message: "",
   });
-  const [status, setStatus] = useState(null); // { type: 'success' | 'error', message: string }
+  const [copied, setCopied] = useState(false);
+  const [feedback, setFeedback] = useState(null); // { status: 'info' | 'error', text: string }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const { name, email, message } = formData;
-
-    if (!name.trim() || !email.trim() || !message.trim()) {
-      setStatus({
-        type: "error",
-        message: "Please fill in your name, email, and message.",
-      });
-      return;
-    }
-
-    setStatus({
-      type: "success",
-      message: `Thanks ${name.trim()}! Your message has been queued — I'll get back to you within 24 hours.`,
-    });
-    setFormData({ name: "", email: "", subject: "", message: "" });
-
-    setTimeout(() => {
-      setStatus(null);
-    }, 6000);
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText("mehdi.datasci@outlook.com");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2500);
   };
 
   const handleChange = (e) => {
@@ -40,21 +24,48 @@ export default function Contact() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const { name, email, subject, message } = formData;
+
+    if (!name.trim() || !email.trim() || !message.trim()) {
+      setFeedback({
+        status: "error",
+        text: "Please provide your name, email, and message before sending.",
+      });
+      return;
+    }
+
+    // Build authentic mailto fallback
+    const mailtoSubject = subject.trim() || `Portfolio Inquiry from ${name.trim()}`;
+    const mailtoBody = `Name: ${name.trim()}\nEmail: ${email.trim()}\n\n${message.trim()}`;
+    const mailtoUrl = `mailto:mehdi.datasci@outlook.com?subject=${encodeURIComponent(
+      mailtoSubject
+    )}&body=${encodeURIComponent(mailtoBody)}`;
+
+    setFeedback({
+      status: "info",
+      text: "Opening your default email client to send this message to mehdi.datasci@outlook.com. You can also email directly using the address on the right.",
+    });
+
+    window.location.href = mailtoUrl;
+  };
+
   return (
     <section id="contact" className="section">
       <div className="wrap">
         {/* Section header */}
         <div className="mb-14 max-w-3xl">
-          <span className="mono text-xs font-medium uppercase tracking-[0.14em] text-sky">
+          <span className="mono text-xs font-medium uppercase tracking-[0.14em] text-olive">
             07 — Contact
           </span>
 
           <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-foreground md:text-4xl">
-            Let&apos;s talk data.
+            Get in touch.
           </h2>
 
-          <p className="mt-5 max-w-2xl text-base leading-7 text-muted">
-            Whether it&apos;s an internship, a student collaboration, or a dataset you want a second pair of eyes on — I read everything.
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted">
+            Open to student internships, academic collaborations, and project discussions.
           </p>
         </div>
 
@@ -63,7 +74,7 @@ export default function Contact() {
           {/* Form Card */}
           <form
             onSubmit={handleSubmit}
-            className="rounded-[var(--radius)] border border-border bg-surface p-6 shadow-[var(--shadow)] sm:p-8"
+            className="rounded-[14px] border border-border bg-surface p-6 shadow-[var(--shadow)] sm:p-8"
           >
             <div className="grid gap-5 sm:grid-cols-2">
               <div>
@@ -80,7 +91,7 @@ export default function Contact() {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="Full name"
-                  className="mt-2 w-full rounded-xl border border-border bg-white/[0.03] px-4 py-3 text-sm text-foreground transition-all duration-200 placeholder:text-muted-2 focus:border-sky/60 focus:bg-sky/5 focus:ring-2 focus:ring-sky/20 focus:outline-hidden"
+                  className="mt-2 w-full rounded-[8px] border border-border bg-background-soft px-3.5 py-2.5 text-sm text-foreground transition-colors placeholder:text-muted-2 focus:border-olive focus:outline-hidden"
                   required
                 />
               </div>
@@ -99,7 +110,7 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="you@example.com"
-                  className="mt-2 w-full rounded-xl border border-border bg-white/[0.03] px-4 py-3 text-sm text-foreground transition-all duration-200 placeholder:text-muted-2 focus:border-sky/60 focus:bg-sky/5 focus:ring-2 focus:ring-sky/20 focus:outline-hidden"
+                  className="mt-2 w-full rounded-[8px] border border-border bg-background-soft px-3.5 py-2.5 text-sm text-foreground transition-colors placeholder:text-muted-2 focus:border-olive focus:outline-hidden"
                   required
                 />
               </div>
@@ -118,8 +129,8 @@ export default function Contact() {
                 name="subject"
                 value={formData.subject}
                 onChange={handleChange}
-                placeholder="Internship opportunity, collaboration, question…"
-                className="mt-2 w-full rounded-xl border border-border bg-white/[0.03] px-4 py-3 text-sm text-foreground transition-all duration-200 placeholder:text-muted-2 focus:border-sky/60 focus:bg-sky/5 focus:ring-2 focus:ring-sky/20 focus:outline-hidden"
+                placeholder="Internship opportunity, academic collaboration, question…"
+                className="mt-2 w-full rounded-[8px] border border-border bg-background-soft px-3.5 py-2.5 text-sm text-foreground transition-colors placeholder:text-muted-2 focus:border-olive focus:outline-hidden"
               />
             </div>
 
@@ -136,71 +147,88 @@ export default function Contact() {
                 rows={5}
                 value={formData.message}
                 onChange={handleChange}
-                placeholder="Tell me a bit about what you have in mind…"
-                className="mt-2 w-full resize-y rounded-xl border border-border bg-white/[0.03] px-4 py-3 text-sm text-foreground transition-all duration-200 placeholder:text-muted-2 focus:border-sky/60 focus:bg-sky/5 focus:ring-2 focus:ring-sky/20 focus:outline-hidden"
+                placeholder="Write your message here…"
+                className="mt-2 w-full resize-y rounded-[8px] border border-border bg-background-soft px-3.5 py-2.5 text-sm text-foreground transition-colors placeholder:text-muted-2 focus:border-olive focus:outline-hidden"
                 required
               />
             </div>
 
             <button
               type="submit"
-              className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-sky py-3.5 text-sm font-semibold text-[#04121a] shadow-[0_12px_28px_-10px_rgba(56,189,248,0.85)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_16px_36px_-10px_rgba(56,189,248,1)]"
-              style={{ background: "var(--gradient)" }}
+              className="mt-6 flex w-full items-center justify-center gap-2 rounded-[10px] bg-olive py-3 text-sm font-semibold text-[#10110F] transition-colors hover:bg-olive-hover"
             >
-              Send message
-              <Send size={15} />
+              Compose & Send Email
+              <Send size={14} />
             </button>
 
-            {status && (
+            {feedback && (
               <div
-                className={`mt-4 flex items-center gap-3 rounded-xl border p-4 text-xs font-medium ${
-                  status.type === "success"
-                    ? "border-mint/30 bg-mint/10 text-mint"
-                    : "border-pink/30 bg-pink/10 text-pink"
+                className={`mt-4 rounded-lg border p-3.5 text-xs leading-relaxed ${
+                  feedback.status === "info"
+                    ? "border-olive/30 bg-surface-2/70 text-foreground"
+                    : "border-border-strong bg-background-soft text-[#F2F1EA]"
                 }`}
               >
-                {status.type === "success" ? (
-                  <CheckCircle2 size={16} className="shrink-0" />
-                ) : (
-                  <AlertCircle size={16} className="shrink-0" />
-                )}
-                <span>{status.message}</span>
+                {feedback.text}
               </div>
             )}
           </form>
 
           {/* Direct Details Card */}
-          <div className="flex flex-col justify-between rounded-[var(--radius)] border border-border bg-surface p-6 shadow-[var(--shadow)] sm:p-8">
+          <div className="flex flex-col justify-between rounded-[14px] border border-border bg-surface p-6 shadow-[var(--shadow)] sm:p-8">
             <div>
-              <h3 className="text-lg font-bold text-foreground">Direct contact</h3>
-              <p className="mt-1 text-sm text-muted">
-                Fast responses for academic and industry inquiries.
+              <h3 className="text-lg font-bold text-foreground">Direct Contact</h3>
+              <p className="mt-1 text-xs text-muted">
+                Student contact channel for academic and professional inquiries.
               </p>
 
               <div className="mt-6 divide-y divide-border">
-                <div className="flex items-center gap-4 py-4">
-                  <span className="grid size-10 place-items-center rounded-xl border border-sky/20 bg-sky/10 text-sky">
-                    <Mail size={18} />
-                  </span>
-                  <div>
-                    <span className="mono block text-[11px] uppercase tracking-wider text-muted-2">
-                      Email
+                {/* Email row with copy button */}
+                <div className="flex items-center justify-between gap-4 py-4">
+                  <div className="flex items-center gap-3.5">
+                    <span className="grid size-9 place-items-center rounded-lg border border-border bg-surface-2 text-olive">
+                      <Mail size={16} />
                     </span>
-                    <a
-                      href="mailto:mehdi.datasci@outlook.com"
-                      className="text-sm font-medium text-foreground transition-colors hover:text-sky"
-                    >
-                      mehdi.datasci@outlook.com
-                    </a>
+                    <div>
+                      <span className="mono block text-[10px] uppercase tracking-wider text-muted-2">
+                        Email
+                      </span>
+                      <a
+                        href="mailto:mehdi.datasci@outlook.com"
+                        className="text-sm font-medium text-foreground hover:text-olive transition-colors"
+                      >
+                        mehdi.datasci@outlook.com
+                      </a>
+                    </div>
                   </div>
+
+                  <button
+                    type="button"
+                    onClick={handleCopyEmail}
+                    className="flex items-center gap-1.5 rounded-md border border-border bg-surface-2 px-2.5 py-1 text-xs text-muted hover:border-olive hover:text-foreground transition-colors"
+                    title="Copy email to clipboard"
+                  >
+                    {copied ? (
+                      <>
+                        <Check size={12} className="text-olive" />
+                        <span className="text-olive">Copied</span>
+                      </>
+                    ) : (
+                      <>
+                        <Copy size={12} />
+                        <span>Copy</span>
+                      </>
+                    )}
+                  </button>
                 </div>
 
-                <div className="flex items-center gap-4 py-4">
-                  <span className="grid size-10 place-items-center rounded-xl border border-violet/20 bg-violet/10 text-violet">
-                    <MapPin size={18} />
+                {/* Location row */}
+                <div className="flex items-center gap-3.5 py-4">
+                  <span className="grid size-9 place-items-center rounded-lg border border-border bg-surface-2 text-olive">
+                    <MapPin size={16} />
                   </span>
                   <div>
-                    <span className="mono block text-[11px] uppercase tracking-wider text-muted-2">
+                    <span className="mono block text-[10px] uppercase tracking-wider text-muted-2">
                       Location
                     </span>
                     <span className="text-sm font-medium text-foreground">
@@ -209,30 +237,17 @@ export default function Contact() {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4 py-4">
-                  <span className="grid size-10 place-items-center rounded-xl border border-mint/20 bg-mint/10 text-mint">
-                    <Clock size={18} />
+                {/* Affiliation row */}
+                <div className="flex items-center gap-3.5 py-4">
+                  <span className="grid size-9 place-items-center rounded-lg border border-border bg-surface-2 text-olive">
+                    <GraduationCap size={16} />
                   </span>
                   <div>
-                    <span className="mono block text-[11px] uppercase tracking-wider text-muted-2">
-                      Response time
+                    <span className="mono block text-[10px] uppercase tracking-wider text-muted-2">
+                      University
                     </span>
                     <span className="text-sm font-medium text-foreground">
-                      Within 24 hours
-                    </span>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4 py-4">
-                  <span className="grid size-10 place-items-center rounded-xl border border-amber/20 bg-amber/10 text-amber">
-                    <Briefcase size={18} />
-                  </span>
-                  <div>
-                    <span className="mono block text-[11px] uppercase tracking-wider text-muted-2">
-                      Focus
-                    </span>
-                    <span className="text-sm font-medium text-foreground">
-                      Data Science internships
+                      USTHB · 2nd-Year Data Science
                     </span>
                   </div>
                 </div>
@@ -240,10 +255,13 @@ export default function Contact() {
             </div>
 
             {/* Availability Box */}
-            <div className="mt-6 flex items-start gap-3 rounded-xl border border-mint/20 bg-mint/5 p-4 text-xs leading-relaxed text-[#9fe8c9]">
-              <span className="mt-1 size-2 shrink-0 animate-pulse rounded-full bg-mint shadow-[0_0_8px_var(--mint)]" />
+            <div className="mt-8 rounded-xl border border-border bg-surface-2/40 p-4 text-xs leading-relaxed text-muted">
+              <div className="flex items-center gap-2 text-foreground font-semibold mb-1">
+                <span className="size-1.5 rounded-full bg-olive" />
+                Internship & Collaboration Status
+              </div>
               <p>
-                Currently available for a <strong>summer internship</strong> or part-time student collaboration — on-site in Algiers or remote.
+                Currently seeking student internship opportunities and academic collaborations for upcoming academic terms.
               </p>
             </div>
           </div>

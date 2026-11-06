@@ -1,53 +1,101 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import MobileNav from "./MobileNav";
 
-const navLinks = [
+export const navLinks = [
   { name: "About", href: "#about" },
   { name: "Skills", href: "#skills" },
   { name: "Projects", href: "#projects" },
+  { name: "Case Study", href: "#case" },
   { name: "Education", href: "#education" },
+  { name: "Network", href: "#connect" },
   { name: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+
+      const sectionIds = ["about", "skills", "projects", "case", "education", "connect", "contact"];
+      const current = sectionIds.find((id) => {
+        const el = document.getElementById(id);
+        if (!el) return false;
+        const rect = el.getBoundingClientRect();
+        return rect.top <= 140 && rect.bottom >= 140;
+      });
+
+      if (current) setActiveSection(current);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="fixed top-0 right-0 left-0 z-50 border-b border-border bg-background/80 backdrop-blur-[10px]">
-      <div className="wrap flex h-[68px] w-full items-center justify-between">
+    <header
+      className={`fixed top-0 right-0 left-0 z-40 transition-all duration-200 ${
+        isScrolled
+          ? "border-b border-border bg-background/90 backdrop-blur-md"
+          : "border-b border-transparent bg-transparent"
+      }`}
+    >
+      <div className="wrap flex h-[68px] items-center justify-between">
         {/* Brand */}
-        <a href="#hero" className="flex items-center gap-[11px]">
-          <span
-            className="grid size-[34px] place-items-center rounded-[10px] font-extrabold text-[0.95rem] text-[#04121a] shadow-[0_8px_24px_-10px_rgba(56,189,248,0.9)]"
-            style={{ background: "var(--gradient)" }}
-          >
+        <a href="#hero" className="flex items-center gap-[11px] group">
+          <span className="grid size-[34px] place-items-center rounded-[10px] border border-border-strong bg-surface text-[0.95rem] font-semibold text-olive transition-colors group-hover:border-olive">
             M
           </span>
 
-          <span className="text-[1.05rem] font-bold tracking-[-0.02em]">
-            Mehdi<span className="text-sky">.</span>
+          <span className="text-[1.05rem] font-bold tracking-tight text-foreground">
+            Mehdi<span className="text-olive">.</span>
           </span>
         </a>
 
         {/* Navigation */}
-        <nav className="hidden items-center gap-[6px] md:flex">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="rounded-[9px] px-[14px] py-2 text-[0.88rem] font-medium text-muted transition-colors duration-200 hover:bg-white/5 hover:text-foreground"
-            >
-              {link.name}
-            </a>
-          ))}
+        <nav className="hidden items-center gap-1 lg:flex">
+          {navLinks.map((link) => {
+            const sectionId = link.href.replace("#", "");
+            const isActive = activeSection === sectionId;
+
+            return (
+              <a
+                key={link.name}
+                href={link.href}
+                className={`relative rounded-[8px] px-3.5 py-1.5 text-[0.88rem] font-medium transition-colors ${
+                  isActive
+                    ? "text-foreground"
+                    : "text-muted hover:bg-surface hover:text-foreground"
+                }`}
+              >
+                {link.name}
+                {isActive && (
+                  <span className="absolute right-3.5 bottom-0 left-3.5 h-[1.5px] bg-olive" />
+                )}
+              </a>
+            );
+          })}
         </nav>
 
-        <div className="hidden md:flex md:items-center md:gap-2 ml-2 rounded-3xl border border-sky/30 bg-white px-[14px] py-2 text-[0.88rem] font-medium text-black hover:text-sky transition-colors duration-200 hover:border-sky/55 hover:bg-sky/18 cursor-pointer">
-          <a href="#contact">
-            Hire Me
+        {/* CTA Button */}
+        <div className="hidden lg:flex lg:items-center">
+          <a
+            href="#contact"
+            className="flex items-center gap-2 rounded-full border border-border-strong bg-surface px-4 py-2 text-[0.88rem] font-medium text-foreground transition-all hover:border-olive hover:text-olive"
+          >
+            <span>Contact</span>
+            <ArrowRight size={15} className="-rotate-45" />
           </a>
-          <ArrowRight size={18} className="-rotate-45" />
         </div>
 
-        {/* Mobile button */}
+        {/* Mobile menu */}
         <MobileNav />
       </div>
     </header>

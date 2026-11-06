@@ -13,11 +13,13 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata = {
-  title: "Mehdi — Data Science Portfolio",
-  description: "Portfolio of Mehdi, 2nd-year Data Science student at USTHB, Algiers. Showcasing end-to-end analytical pipelines, machine learning models, and real-world data projects.",
+  title: "Mehdi — Data Science Student · USTHB",
+  description:
+    "Portfolio of Mehdi, second-year Data Science student at USTHB, Algiers. Developing skills in Python, data analysis, machine learning, and practical problem solving.",
   openGraph: {
-    title: "Mehdi — Data Science Portfolio",
-    description: "Portfolio of Mehdi, 2nd-year Data Science student at USTHB, Algiers. Showcasing end-to-end analytical pipelines, machine learning models, and real-world data projects.",
+    title: "Mehdi — Data Science Student · USTHB",
+    description:
+      "Portfolio of Mehdi, second-year Data Science student at USTHB, Algiers. Developing skills in Python, data analysis, machine learning, and practical problem solving.",
     type: "website",
   },
 };
@@ -28,8 +30,7 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${inter.variable} ${jetbrainsMono.variable}`}
     >
-      <body>
-        <div className="bg-layer" aria-hidden="true" />
+      <body className="bg-background text-foreground antialiased selection:bg-olive/30 selection:text-foreground">
         <ScrollProgress />
         {children}
       </body>

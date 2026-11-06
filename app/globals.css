@@ -1,46 +1,37 @@
 @import "tailwindcss";
 
 :root {
-  /* Colors */
-  --background: #070b12;
-  --background-soft: #0a0e15;
+  /* ============ BLACK & OLIVE PALETTE ============ */
+  --background: #10110F;
+  --background-soft: #161814;
 
-  --surface: rgba(255, 255, 255, 0.028);
-  --surface-2: rgba(255, 255, 255, 0.045);
+  --surface: #20231D;
+  --surface-2: #41483A;
 
-  --border: rgba(255, 255, 255, 0.075);
-  --border-strong: rgba(255, 255, 255, 0.14);
+  --border: rgba(242, 241, 234, 0.06);
+  --border-strong: rgba(242, 241, 234, 0.10);
 
-  --foreground: #e8eef5;
-  --muted: #8a97a8;
-  --muted-2: #5f6b7c;
+  --foreground: #F2F1EA;
+  --muted: #A5A69D;
+  --muted-2: #7D8075;
 
-  /* Accent */
-  --sky: #38bdf8;
-  --violet: #a78bfa;
-  --mint: #34d399;
-  --amber: #fbbf24;
-  --pink: #f472b6;
+  /* Olive Accent */
+  --olive: #92977F;
+  --olive-soft: rgba(146, 151, 127, 0.12);
+  --olive-hover: #A5AA92;
 
-  /* Gradient */
-  --gradient: linear-gradient(
-    115deg,
-    #38bdf8 0%,
-    #a78bfa 52%,
-    #34d399 100%
-  );
-
-  --gradient-soft: linear-gradient(
-    115deg,
-    rgba(56, 189, 248, 0.18),
-    rgba(167, 139, 250, 0.14)
-  );
+  /* Color aliases redirected to Olive & monochrome palette */
+  --sky: #92977F;
+  --violet: #92977F;
+  --mint: #92977F;
+  --amber: #92977F;
+  --pink: #92977F;
 
   /* Shape */
-  --radius: 18px;
+  --radius: 14px;
 
-  /* Effects */
-  --shadow: 0 30px 70px -30px rgba(0, 0, 0, 0.9);
+  /* Subtle minimal shadow */
+  --shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.65);
 
   /* Animation */
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
@@ -60,23 +51,26 @@
   --color-muted: var(--muted);
   --color-muted-2: var(--muted-2);
 
-  --color-sky: var(--sky);
-  --color-violet: var(--violet);
-  --color-mint: var(--mint);
-  --color-amber: var(--amber);
-  --color-pink: var(--pink);
+  --color-olive: var(--olive);
+  --color-olive-soft: var(--olive-soft);
+  --color-olive-hover: var(--olive-hover);
+
+  --color-sky: var(--olive);
+  --color-violet: var(--olive);
+  --color-mint: var(--olive);
+  --color-amber: var(--olive);
+  --color-pink: var(--olive);
 
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains-mono);
 
   --animate-float: float 4s ease-in-out infinite;
-  --animate-marquee: marquee 25s linear infinite;
+  --animate-marquee: marquee 32s linear infinite;
 
   @keyframes marquee {
     from {
       transform: translateX(0);
     }
-
     to {
       transform: translateX(-50%);
     }
@@ -87,16 +81,13 @@
     100% {
       transform: translateY(0);
     }
-
     50% {
-      transform: translateY(-10px);
+      transform: translateY(-6px);
     }
   }
-
 }
 
 /* Base */
-
 * {
   box-sizing: border-box;
 }
@@ -135,16 +126,15 @@ svg {
 }
 
 ::selection {
-  background: rgba(56, 189, 248, 0.3);
-  color: #fff;
+  background: rgba(146, 151, 127, 0.3);
+  color: #F2F1EA;
 }
 
 .mono {
   font-family: var(--font-jetbrains-mono), monospace;
 }
 
-/* Layout System */
-
+/* Layout */
 .wrap {
   width: 100%;
   max-width: 1180px;
@@ -153,21 +143,9 @@ svg {
 }
 
 .section {
-  padding-block: 110px;
+  padding-block: 100px;
 }
 
 section {
   scroll-margin-top: 80px;
-}
-
-.bg-layer {
-  position: fixed;
-  inset: 0;
-  z-index: -3;
-  pointer-events: none;
-  background:
-    radial-gradient(900px 620px at 10% -8%, rgba(56, 189, 248, 0.16), transparent 62%),
-    radial-gradient(820px 600px at 90% 4%, rgba(167, 139, 250, 0.14), transparent 62%),
-    radial-gradient(760px 560px at 50% 104%, rgba(52, 211, 153, 0.085), transparent 66%),
-    var(--background);
 }

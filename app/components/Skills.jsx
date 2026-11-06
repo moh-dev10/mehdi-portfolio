@@ -1,62 +1,53 @@
 import RadarChart from "./RadarChart";
 
-const dotColorMap = {
-  sky: "bg-sky text-sky shadow-[0_0_8px_var(--sky)]",
-  violet: "bg-violet text-violet shadow-[0_0_8px_var(--violet)]",
-  mint: "bg-mint text-mint shadow-[0_0_8px_var(--mint)]",
-  amber: "bg-amber text-amber shadow-[0_0_8px_var(--amber)]",
-  pink: "bg-pink text-pink shadow-[0_0_8px_var(--pink)]",
-  muted: "bg-muted text-muted shadow-[0_0_8px_var(--muted)]",
-};
-
 const skills = [
   {
     name: "Python",
-    value: 90,
-    color: "sky",
-    gradient: "from-sky/70 to-sky",
+    stage: "Practicing",
+    level: 75,
+    note: "Data wrangling, automation & scripting",
   },
   {
     name: "Pandas",
-    value: 88,
-    color: "violet",
-    gradient: "from-violet/70 to-violet",
+    stage: "Practicing",
+    level: 75,
+    note: "Data exploration, grouping & cleaning",
   },
   {
     name: "NumPy",
-    value: 85,
-    color: "mint",
-    gradient: "from-mint/70 to-mint",
+    stage: "Practicing",
+    level: 70,
+    note: "Array operations, vectorization & math",
   },
   {
     name: "SQL",
-    value: 82,
-    color: "amber",
-    gradient: "from-amber/70 to-amber",
+    stage: "Familiar with",
+    level: 60,
+    note: "Relational queries, joins & aggregations",
   },
   {
     name: "Matplotlib & Seaborn",
-    value: 80,
-    color: "pink",
-    gradient: "from-pink/70 to-pink",
+    stage: "Practicing",
+    level: 70,
+    note: "Statistical visualization & distribution plots",
   },
   {
     name: "Scikit-learn",
-    value: 78,
-    color: "mint",
-    gradient: "from-mint/60 to-mint",
+    stage: "Learning",
+    level: 55,
+    note: "Supervised models, pipelines & cross-validation",
   },
   {
     name: "Statistics & Probability",
-    value: 76,
-    color: "violet",
-    gradient: "from-violet/60 to-violet",
+    stage: "Academic core",
+    level: 70,
+    note: "USTHB curriculum: inference, distributions, linear algebra",
   },
   {
     name: "Git & Jupyter",
-    value: 72,
-    color: "muted",
-    gradient: "from-muted-2 to-muted",
+    stage: "Practicing",
+    level: 65,
+    note: "Notebook workflows, documentation & GitHub",
   },
 ];
 
@@ -76,49 +67,49 @@ export default function Skills() {
       <div className="wrap">
         {/* Section header */}
         <div className="mb-14 max-w-3xl">
-          <span className="mono text-xs font-medium uppercase tracking-[0.14em] text-sky">
+          <span className="mono text-xs font-medium uppercase tracking-[0.14em] text-olive">
             02 — Technical Skills
           </span>
 
-          <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-foreground md:text-4xl">
-            The toolkit I use to get from raw data to a validated result.
+          <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-foreground md:text-4xl">
+            Technical toolkit & academic development.
           </h2>
 
-          <p className="mt-5 max-w-2xl text-base leading-7 text-muted">
-            Proficiency reflects how confident I am applying each tool on a
-            real, messy dataset without hand-holding.
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted">
+            Categorized by practical familiarity and academic application rather than arbitrary scores.
           </p>
         </div>
 
         {/* Skills layout */}
         <div className="grid gap-6 lg:grid-cols-[1.25fr_0.75fr]">
           {/* Skills list */}
-          <div className="rounded-[var(--radius)] border border-border bg-surface p-6 shadow-[var(--shadow)]">
+          <div className="rounded-[14px] border border-border bg-surface p-6 shadow-[var(--shadow)] sm:p-7">
             <div className="space-y-6">
               {skills.map((skill) => (
                 <div key={skill.name}>
                   {/* Top */}
-                  <div className="mb-2.5 flex items-center justify-between">
+                  <div className="mb-2 flex items-center justify-between">
                     <span className="flex items-center gap-2.5 text-sm font-medium text-foreground">
-                      <span
-                        className={`size-2 rounded-full ${dotColorMap[skill.color] || "bg-sky"}`}
-                      />
-
+                      <span className="size-1.5 rounded-full bg-olive" />
                       {skill.name}
                     </span>
 
-                    <span className="mono text-xs text-muted">
-                      {skill.value}%
+                    <span className="mono rounded border border-border bg-surface-2 px-2 py-0.5 text-[11px] text-olive">
+                      {skill.stage}
                     </span>
                   </div>
 
-                  {/* Bar */}
+                  {/* Progress indicator */}
                   <div className="h-1.5 overflow-hidden rounded-full bg-surface-2">
                     <div
-                      className={`h-full rounded-full bg-linear-to-r ${skill.gradient}`}
-                      style={{ width: `${skill.value}%` }}
+                      className="h-full rounded-full bg-olive transition-all duration-300"
+                      style={{ width: `${skill.level}%` }}
                     />
                   </div>
+
+                  <p className="mt-1.5 text-xs text-muted-2">
+                    {skill.note}
+                  </p>
                 </div>
               ))}
             </div>
@@ -127,35 +118,35 @@ export default function Skills() {
           {/* Right side */}
           <div className="space-y-6">
             {/* Radar */}
-            <div className="rounded-[var(--radius)] border border-border bg-surface p-6 shadow-[var(--shadow)]">
+            <div className="rounded-[14px] border border-border bg-surface p-6 shadow-[var(--shadow)] sm:p-7">
               <h3 className="text-sm font-semibold text-foreground">
-                Skill distribution
+                Skill balance
               </h3>
 
               <p className="mono mt-1 text-xs text-muted-2">
-                 { "//" }self-assessed competency map
+                {"//"} academic self-assessment
               </p>
 
-              <div className="mt-6 flex min-h-[280px] items-center justify-center">
-                <RadarChart/>
+              <div className="mt-4 flex min-h-[260px] items-center justify-center">
+                <RadarChart />
               </div>
             </div>
 
             {/* Currently exploring */}
-            <div className="rounded-[var(--radius)] border border-border bg-surface p-6 shadow-[var(--shadow)]">
+            <div className="rounded-[14px] border border-border bg-surface p-6 shadow-[var(--shadow)] sm:p-7">
               <h3 className="text-sm font-semibold text-foreground">
                 Currently exploring
               </h3>
 
               <p className="mono mt-1 text-xs text-muted-2">
-                {"//"} next 6 months
+                {"//"} upcoming study & practice areas
               </p>
 
-              <div className="mt-5 flex flex-wrap gap-2">
+              <div className="mt-4 flex flex-wrap gap-2">
                 {exploring.map((item) => (
                   <span
                     key={item}
-                    className="rounded-full border border-border bg-surface-2 px-3 py-1.5 text-xs text-muted transition-colors duration-300 hover:border-border-strong hover:text-foreground"
+                    className="rounded-full border border-border bg-surface-2 px-3 py-1 text-xs text-muted transition-colors hover:border-olive hover:text-foreground"
                   >
                     {item}
                   </span>
