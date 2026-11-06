@@ -1,37 +1,6 @@
 import RadarChart from "./RadarChart";
 import Reveal from "./Reveal";
-
-const skillMatrix = [
-  {
-    category: "Languages & Core",
-    items: [
-      { name: "Python", status: "Primary tool", desc: "Data manipulation, scripts, notebook analysis" },
-      { name: "SQL", status: "Academic study", desc: "Relational queries, joins, aggregations" },
-    ],
-  },
-  {
-    category: "Data Analysis & ML",
-    items: [
-      { name: "Pandas & NumPy", status: "Frequent use", desc: "Data cleaning, reshaping, array operations" },
-      { name: "Scikit-learn", status: "Active study", desc: "Regression, classification, CV workflows" },
-      { name: "Matplotlib & Seaborn", status: "Frequent use", desc: "Exploratory plotting and statistical charts" },
-    ],
-  },
-  {
-    category: "Mathematics & Statistics",
-    items: [
-      { name: "Probability & Inference", status: "L2 Curriculum", desc: "Distributions, hypothesis testing, estimators" },
-      { name: "Linear Algebra", status: "L2 Curriculum", desc: "Matrix operations, eigenvalues, projections" },
-    ],
-  },
-  {
-    category: "Environment & Tools",
-    items: [
-      { name: "Jupyter Notebooks", status: "Daily", desc: "Reproducible research and analysis" },
-      { name: "Git & GitHub", status: "Practicing", desc: "Version control and project tracking" },
-    ],
-  },
-];
+import { getSkillCategories } from "@/lib/repositories/skillsRepository";
 
 const nextStudies = [
   { topic: "PyTorch", note: "Deep learning mathematical foundations" },
@@ -40,7 +9,9 @@ const nextStudies = [
   { topic: "NLP", note: "Text preprocessing & tokenization techniques" },
 ];
 
-export default function Skills() {
+export default async function Skills() {
+  const skillMatrix = await getSkillCategories();
+
   return (
     <section id="skills" className="section border-b border-border">
       <div className="wrap">

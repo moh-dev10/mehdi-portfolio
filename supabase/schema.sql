@@ -78,6 +78,15 @@ create table if not exists public.contact_messages (
 );
 
 -- ==============================================================================
+-- INDEXES
+-- ==============================================================================
+create index if not exists idx_projects_sort_order on public.projects(sort_order);
+create index if not exists idx_education_sort_order on public.education(sort_order);
+create index if not exists idx_skills_sort_order on public.skills(sort_order);
+create index if not exists idx_contact_messages_created_at on public.contact_messages(created_at desc);
+create index if not exists idx_contact_messages_status on public.contact_messages(status);
+
+-- ==============================================================================
 -- ROW LEVEL SECURITY (RLS) POLICIES
 -- ==============================================================================
 
@@ -136,9 +145,9 @@ create policy "Allow anonymous message submission"
   on public.contact_messages for insert
   to anon, authenticated
   with check (
-    char_length(name) >= 2 and
-    char_length(email) >= 5 and
-    char_length(message) >= 5
+    char_length(name) >= 2 and char_length(name) <= 100 and
+    char_length(email) >= 5 and char_length(email) <= 120 and
+    char_length(message) >= 5 and char_length(message) <= 3000
   );
 
 -- 2. ONLY authenticated admin can view contact messages (prevents public inspection of private user messages)

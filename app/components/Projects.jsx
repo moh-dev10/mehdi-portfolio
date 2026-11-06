@@ -1,8 +1,10 @@
 import ProjectCard from "./ProjectCard";
 import Reveal from "./Reveal";
-import { projects } from "../data/projects";
+import { getProjects } from "@/lib/repositories/projectsRepository";
 
-export default function Projects() {
+export default async function Projects() {
+  const projects = await getProjects();
+
   return (
     <section id="projects" className="section border-b border-border">
       <div className="wrap">

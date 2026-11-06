@@ -55,6 +55,27 @@ export interface SkillCategoryRecord {
   created_at?: string;
 }
 
+/**
+ * Raw row schema stored in Supabase projects table (PostgreSQL snake_case convention)
+ */
+export interface ProjectDbRow {
+  id: number;
+  title: string;
+  slug: string;
+  description: string;
+  category: string;
+  image: string;
+  tags: string[];
+  github_url: string;
+  demo_url: string | null;
+  featured: boolean;
+  sort_order?: number;
+  created_at?: string;
+}
+
+/**
+ * Normalized application project model consumed by UI components (camelCase convention)
+ */
 export interface ProjectRecord {
   id: number;
   title: string;
@@ -101,9 +122,9 @@ export interface Database {
         Relationships: [];
       };
       projects: {
-        Row: ProjectRecord;
-        Insert: Omit<ProjectRecord, "id" | "created_at"> & { id?: number };
-        Update: Partial<ProjectRecord>;
+        Row: ProjectDbRow;
+        Insert: Omit<ProjectDbRow, "created_at">;
+        Update: Partial<ProjectDbRow>;
         Relationships: [];
       };
       contact_messages: {

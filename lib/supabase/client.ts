@@ -5,20 +5,27 @@ import type { Database } from "./types";
 let browserClient: SupabaseClient<Database> | null = null;
 
 /**
- * Checks whether Supabase client environment variables are available.
- * Does not check connectivity, only credential availability.
+ * Checks whether Supabase client environment variables are available and well-formed.
+ * Validates presence, non-placeholder values, and parseable URL structure.
  */
 export function isSupabaseConfigured(): boolean {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-  return Boolean(
-    url &&
-      anonKey &&
-      url !== "https://your-project-ref.supabase.co" &&
-      anonKey !== "your-anon-or-publishable-key" &&
-      url.startsWith("http")
-  );
+  if (!url || !anonKey) return false;
+  if (
+    url === "https://your-project-ref.supabase.co" ||
+    anonKey === "your-anon-or-publishable-key"
+  ) {
+    return false;
+  }
+
+  try {
+    const parsed = new URL(url);
+    return parsed.protocol === "https:" || parsed.protocol === "http:";
+  } catch {
+    return false;
+  }
 }
 
 /**

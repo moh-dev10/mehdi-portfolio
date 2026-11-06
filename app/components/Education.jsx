@@ -1,7 +1,9 @@
 import Reveal from "./Reveal";
-import { localEducation } from "@/lib/repositories/educationRepository";
+import { getEducation } from "@/lib/repositories/educationRepository";
 
-export default function Education() {
+export default async function Education() {
+  const education = await getEducation();
+
   return (
     <section id="education" className="section border-b border-border">
       <div className="wrap">
@@ -24,7 +26,7 @@ export default function Education() {
 
         {/* Chronological Record */}
         <div className="mt-12 divide-y divide-border border-t border-border">
-          {localEducation.map((item, index) => (
+          {education.map((item, index) => (
             <Reveal key={item.period + item.qualification} delay={index * 90} duration={550}>
               <div className="grid gap-4 py-8 lg:grid-cols-[220px_1fr]">
                 <div>

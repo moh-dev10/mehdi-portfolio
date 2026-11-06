@@ -10,6 +10,7 @@ export default function Contact() {
     name: "",
     email: "",
     message: "",
+    bot_field: "",
   });
   const [errors, setErrors] = useState({});
   const [copied, setCopied] = useState(false);
@@ -215,6 +216,18 @@ export default function Contact() {
               noValidate
               className="flex flex-col justify-between rounded-[4px] border border-border bg-surface p-5 sm:p-6 h-full"
             >
+              {/* Honeypot field for bot spam deterrence */}
+              <input
+                type="text"
+                name="bot_field"
+                value={formData.bot_field}
+                onChange={handleChange}
+                tabIndex={-1}
+                autoComplete="off"
+                className="hidden"
+                aria-hidden="true"
+              />
+
               <div className="space-y-4">
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div>
